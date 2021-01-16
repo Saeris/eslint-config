@@ -305,4 +305,4 @@ const reactConfig = {
   }
 };
 
-export default reactConfig;
+module.exports = reactConfig;

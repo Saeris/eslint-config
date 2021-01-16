@@ -331,4 +331,4 @@ const typescriptConfig = {
   ]
 };
 
-export default typescriptConfig;
+module.exports = typescriptConfig;

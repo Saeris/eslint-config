@@ -20,7 +20,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./src/index.js",
+  "main": "./index.js",
   "files": [
     "src/"
   ],

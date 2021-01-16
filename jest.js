@@ -95,4 +95,4 @@ const jestConfig = {
   }
 };
 
-export default jestConfig;
+module.exports = jestConfig;
