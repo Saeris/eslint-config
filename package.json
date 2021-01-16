@@ -20,7 +20,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./index.js",
+  "main": ".eslintrc.js",
   "files": [
     "src/"
   ],
