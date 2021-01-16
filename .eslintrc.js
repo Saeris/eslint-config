@@ -1,5 +1,3 @@
-const config = {
-  extends: [`./base`, `./react`, `./jest`, `./typescript`]
+module.exports = {
+  extends: [`./base.js`, `./react.js`, `./jest.js`, `./typescript.js`]
 };
-
-module.exports = config;

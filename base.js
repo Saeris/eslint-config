@@ -1,4 +1,4 @@
-const baseConfig = {
+module.exports = {
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: 2020,
@@ -739,5 +739,3 @@ const baseConfig = {
     "promise/prefer-await-to-callbacks": "error"
   }
 };
-
-module.exports = baseConfig;

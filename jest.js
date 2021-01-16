@@ -1,4 +1,4 @@
-const jestConfig = {
+module.exports = {
   env: {
     "jest/globals": true // allows usage of jest globals to not error
   },
@@ -94,5 +94,3 @@ const jestConfig = {
     "jest/valid-title": "error"
   }
 };
-
-module.exports = jestConfig;

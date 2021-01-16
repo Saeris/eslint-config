@@ -1,4 +1,4 @@
-const reactConfig = {
+module.exports = {
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -304,5 +304,3 @@ const reactConfig = {
     "jsx-a11y/tabindex-no-positive": "error"
   }
 };
-
-module.exports = reactConfig;

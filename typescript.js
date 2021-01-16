@@ -1,4 +1,4 @@
-const typescriptConfig = {
+module.exports = {
   parserOptions: {
     tsconfigRootDir: process.cwd(),
     project: [join(process.cwd(), "/tsconfig-eslint.json")]
@@ -330,5 +330,3 @@ const typescriptConfig = {
     }
   ]
 };
-
-module.exports = typescriptConfig;
