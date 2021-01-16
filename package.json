@@ -20,9 +20,13 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": ".eslintrc.js",
+  "main": "index.js",
   "files": [
-    "src/"
+    "index.js",
+    "base.js",
+    "jest.js",
+    "react.js",
+    "typescript.js"
   ],
   "sideEffects": false,
   "engines": {
