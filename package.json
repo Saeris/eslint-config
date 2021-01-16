@@ -50,6 +50,7 @@
   },
   "np": {
     "branch": "main",
-    "tests": false
+    "tests": false,
+    "2fa": false
   }
 }
