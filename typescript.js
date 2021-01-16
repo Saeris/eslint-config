@@ -1,7 +1,13 @@
+const fs = require(`fs`);
+const path = require(`path`);
+
+const tsProjectDir = path.join(process.cwd(), `/tsconfig-eslint.json`);
+const projectExists = fs.existsSync(tsProjectDir);
+
 module.exports = {
   parserOptions: {
     tsconfigRootDir: process.cwd(),
-    project: [join(process.cwd(), "/tsconfig-eslint.json")]
+    project: projectExists ? [tsProjectDir] : undefined
   },
   plugins: [
     "@typescript-eslint" // https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin

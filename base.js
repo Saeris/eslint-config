@@ -6,9 +6,7 @@ module.exports = {
       jsx: true,
       modules: true
     },
-    sourceType: "module",
-    tsconfigRootDir: process.cwd(),
-    project: ["./tsconfig-eslint.json"]
+    sourceType: "module"
   },
   env: {
     es2020: true, // sets parserOptions.ecmaVersion to 2020, but also required for usage of certain features like Promise without errors
