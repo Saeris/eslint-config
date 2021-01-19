@@ -1,13 +1,29 @@
 const fs = require(`fs`);
 const path = require(`path`);
 
-const tsProjectDir = path.join(process.cwd(), `/tsconfig-eslint.json`);
-const projectExists = fs.existsSync(tsProjectDir);
+const tsconfig = path.join(process.cwd(), `/tsconfig.json`);
+const tsEslintconfig = path.join(process.cwd(), `/tsconfig-eslint.json`);
+const tsconfigExists = fs.existsSync(tsconfig);
+const tsEslintconfigExists = fs.existsSync(tsEslintconfig);
+
+const getProject = () => {
+  switch (true) {
+    case tsEslintconfigExists: {
+      return tsEslintconfig;
+    }
+    case tsconfigExists: {
+      return tsconfig;
+    }
+    default: {
+      return undefined;
+    }
+  }
+};
 
 module.exports = {
   parserOptions: {
     tsconfigRootDir: process.cwd(),
-    project: projectExists ? [tsProjectDir] : undefined
+    project: getProject()
   },
   plugins: [
     "@typescript-eslint" // https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin
