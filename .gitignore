@@ -1,28 +1,16 @@
 # package directories
 node_modules
-jspm_packages
 
 # Directories
-.serverless
-.webpack
-.netlify
+/.husky/_
 /.coverage
-/pkg
-/dist
-/public
-/build
-/typings
-/.awcache
-/.ssh
-/electron.js*
 
 # Files
 .DS_STORE
 npm-debug.log*
 yarn-error.log*
 .env
-serverless.env.yml
-.nyc_output
+*.tsbuildinfo
 
 coverage.lcov
 engine.json
