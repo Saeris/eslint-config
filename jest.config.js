@@ -3,6 +3,7 @@
  * @type {import("@jest/types").Config.InitialOptions}
  */
 module.exports = {
+  displayName: `eslint-config`,
   coverageDirectory: `./.coverage/`,
   collectCoverage: true,
   collectCoverageFrom: [
