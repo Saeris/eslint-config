@@ -1,6 +1,6 @@
 module.exports = {
-  "{src}/**/*.{js,ts}": (filenames) => [
+  "src/**/*.{j,t}s": (filenames) => [
     `prettier --write ${filenames.join(` `)}`, // Applies code formatting
-    `yarn lint --fix --quiet ${filenames.join(` `)}` // Lints & Applies automatic fixes to problems
+    `yarn format --quiet ${filenames.join(` `)}` // Lints & Applies automatic fixes to problems
   ]
 };
