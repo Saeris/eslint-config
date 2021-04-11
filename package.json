@@ -22,13 +22,8 @@
   },
   "main": "src/index.js",
   "files": [
-    "index.js",
-    "base.js",
-    "jest.js",
-    "patch.js",
-    "react.js",
-    "type-aware.js",
-    "typescript.js"
+    "src/*",
+    "!src/__tests__/**/*"
   ],
   "exports": {
     ".": "./src/index.js",
