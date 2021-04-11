@@ -30,6 +30,15 @@
     "type-aware.js",
     "typescript.js"
   ],
+  "exports": {
+    ".": "./src/index.js",
+    "./base": "./src/base.js",
+    "./jest": "./src/jest.js",
+    "./patch": "./src/patch.js",
+    "./react": "./src/react.js",
+    "./type-aware": "./src/type-aware.js",
+    "./typescript": "./src/typescript.js"
+  },
   "sideEffects": false,
   "engines": {
     "node": ">=10.x"
