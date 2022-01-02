@@ -1,5 +1,5 @@
 <h1 align="center" style="display: block; text-align: center;">🎛️ ESLint Config</h1>
-<p align="center"><a href="https://www.npmjs.org/package/@saeris/eslint-config"><img src="https://img.shields.io/npm/v/@saeris/eslint-config.svg?style=flat" alt="npm"></a><a href="https://travis-ci.com/Saeris/eslint-config"><img src="https://travis-ci.com/Saeris/eslint-config.svg?branch=master" alt="travis"></a><a href="https://codecov.io/gh/Saeris/eslint-config"><img src="https://codecov.io/gh/Saeris/eslint-config/branch/master/graph/badge.svg" alt="codecov"/></a></p>
+<p align="center"><a href="https://www.npmjs.org/package/@saeris/eslint-config"><img src="https://img.shields.io/npm/v/@saeris/eslint-config.svg?style=flat" alt="npm"></a><a href="https://codecov.io/gh/Saeris/eslint-config"><img src="https://codecov.io/gh/Saeris/eslint-config/branch/master/graph/badge.svg" alt="codecov"/></a></p>
 <p align="center">Personal collection of shareable <a href="https://eslint.org/">ESLint</a> Configs.</p>
 
 ---
