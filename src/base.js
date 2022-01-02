@@ -1,3 +1,5 @@
+// @ts-check
+
 /**
  * @type {import("eslint").Linter.Config}
  */
@@ -29,6 +31,7 @@ module.exports = {
       "@typescript-eslint/parser": [`.ts`, `.tsx`]
     }
   },
+  ignorePatterns: [`*.js`, `!./src/*.js`],
   /** Last reviewed: ESLint v^7.15.0 */
   rules: {
     // --- Possible Errors https://eslint.org/docs/rules/#possible-errors ---
@@ -276,7 +279,7 @@ module.exports = {
     /** https://eslint.org/docs/rules/no-with */
     "no-with": `error`,
     /** https://eslint.org/docs/rules/prefer-named-capture-group */
-    "prefer-named-capture-group": `error`,
+    "prefer-named-capture-group": `warn`,
     /** https://eslint.org/docs/rules/prefer-promise-reject-errors */
     "prefer-promise-reject-errors": `error`,
     /** https://eslint.org/docs/rules/prefer-regex-literals */
@@ -745,6 +748,14 @@ module.exports = {
       rules: {
         "no-console": `off`,
         "no-undefined": `off`
+      }
+    },
+    {
+      // Storybook uses Default Exports as a convention in story files
+      files: [`*.stories.{j,t}s?(x)`],
+      rules: {
+        "import/no-default-export": `off`,
+        "import/no-anonymous-default-export": `off`
       }
     }
   ]

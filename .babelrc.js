@@ -1,7 +1,12 @@
+// @ts-check
+
+/**
+ * @type {import("@babel/core").ConfigFunction}
+ */
 module.exports = {
   sourceMaps: `inline`,
-  presets: [require.resolve(`@babel/preset-typescript`)],
   presets: [
+    require.resolve(`@babel/preset-typescript`),
     [
       require.resolve(`@babel/preset-env`),
       {

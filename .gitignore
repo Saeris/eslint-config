@@ -3,7 +3,7 @@ node_modules
 
 # Directories
 /.husky/_
-/.coverage
+/coverage
 
 # Files
 .DS_STORE

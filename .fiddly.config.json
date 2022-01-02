@@ -1,0 +1,9 @@
+{
+  "name": "🎛️ ESLint Config",
+  "description": "Personal collection of shareable ESLint Configs",
+  "noHeader": true,
+  "homepage:": "http://saeris.io",
+  "repo": "https://github.com/saeris/eslint-config",
+  "favicon": "static/favicon.ico",
+  "styles": "styles/styles.css"
+}

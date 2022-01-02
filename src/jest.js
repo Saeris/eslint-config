@@ -1,3 +1,5 @@
+// @ts-check
+
 /**
  * @type {import("eslint").Linter.Config}
  */
@@ -75,10 +77,6 @@ module.exports = {
     "jest/prefer-spy-on": `warn`,
     /** https://github.com/jest-community/eslint-plugin-jest/blob/master/docs/rules/prefer-strict-equal.md */
     "jest/prefer-strict-equal": `warn`,
-    /** https://github.com/jest-community/eslint-plugin-jest/blob/master/docs/rules/prefer-to-be-null.md */
-    "jest/prefer-to-be-null": `warn`,
-    /** https://github.com/jest-community/eslint-plugin-jest/blob/master/docs/rules/prefer-to-be-undefined.md */
-    "jest/prefer-to-be-undefined": `warn`,
     /** https://github.com/jest-community/eslint-plugin-jest/blob/master/docs/rules/prefer-to-contain.md */
     "jest/prefer-to-contain": `warn`,
     /** https://github.com/jest-community/eslint-plugin-jest/blob/master/docs/rules/prefer-to-have-length.md */
@@ -87,8 +85,6 @@ module.exports = {
     "jest/require-to-throw-message": `error`,
     /** https://github.com/jest-community/eslint-plugin-jest/blob/master/docs/rules/require-top-level-describe.md */
     "jest/require-top-level-describe": `error`,
-    /** https://github.com/jest-community/eslint-plugin-jest/blob/master/docs/rules/valid-describe.md */
-    "jest/valid-describe": `error`,
     /** https://github.com/jest-community/eslint-plugin-jest/blob/master/docs/rules/valid-expect.md */
     "jest/valid-expect": `error`,
     /** https://github.com/jest-community/eslint-plugin-jest/blob/master/docs/rules/valid-expect-in-promise.md */

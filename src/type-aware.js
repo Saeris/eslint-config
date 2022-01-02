@@ -1,10 +1,11 @@
+// @ts-check
 /* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require(`fs`);
 const path = require(`path`);
 
 const tsProjectDir = [`./tsconfig-eslint.json`, `./tsconfig.eslint.json`, `./tsconfig.json`]
   .map((file) => path.join(process.cwd(), file))
-  .filter((file) => fs.existsSync(file)); //?
+  .filter((file) => fs.existsSync(file));
 
 // More info here: https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/TYPED_LINTING.md
 /**
@@ -13,8 +14,8 @@ const tsProjectDir = [`./tsconfig-eslint.json`, `./tsconfig.eslint.json`, `./tsc
 module.exports = {
   extends: [require.resolve(`./typescript`)],
   parserOptions: {
-    tsconfigRootDir: process.cwd(),
-    project: tsProjectDir
+    tsProjectDir: process.cwd(),
+    project: tsProjectDir[0]
   },
   rules: {
     /** Supported Rules requiring Type Information */

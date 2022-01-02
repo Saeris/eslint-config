@@ -1,10 +1,13 @@
 // @ts-check
+const { name } = require(`./package.json`);
+
 /**
  * @type {import("@jest/types").Config.InitialOptions}
  */
 module.exports = {
-  displayName: `eslint-config`,
-  coverageDirectory: `./.coverage/`,
+  resolver: "<rootDir>/jest-resolver.js",
+  displayName: name,
+  coverageDirectory: `./coverage/`,
   collectCoverage: true,
   collectCoverageFrom: [
     // include
@@ -14,6 +17,7 @@ module.exports = {
     `!**/__test__/**/*`,
     `!**/node_modules/**`
   ],
+  extensionsToTreatAsEsm: [".ts"],
   testEnvironment: `node`,
   verbose: true
 };

@@ -1,3 +1,5 @@
+// @ts-check
+
 /**
  * @type {import("eslint").Linter.Config}
  */
@@ -90,7 +92,7 @@ module.exports = {
     /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-misused-new.md */
     "@typescript-eslint/no-misused-new": `error`,
     /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-namespace.md */
-    "@typescript-eslint/no-namespace": `error`,
+    "@typescript-eslint/no-namespace": [`error`, { allowDeclarations: true, allowDefinitionFiles: true }],
     /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-non-null-asserted-optional-chain.md */
     "@typescript-eslint/no-non-null-asserted-optional-chain": `error`,
     /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-non-null-assertion.md */
@@ -137,7 +139,7 @@ module.exports = {
      */
 
     /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/brace-style.md */
-    "@typescript-eslint/brace-style": [`error`, `1tbs`, { allowSingleLine: true }],
+    //"@typescript-eslint/brace-style": [`error`, `1tbs`, { allowSingleLine: true }],
     /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/comma-dangle.md */
     "@typescript-eslint/comma-dangle": [`error`, `never`],
     /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/comma-spacing.md */
