@@ -4,6 +4,7 @@ node_modules
 # Directories
 /.husky/_
 /coverage
+public/
 
 # Yarn
 .pnp.*
