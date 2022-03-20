@@ -46,7 +46,6 @@ module.exports = {
     /** https://nextjs.org/docs/messages/next-script-for-ga */
     "@next/next/next-script-for-ga": `error`,
     "@next/next/no-script-in-document": `error`,
-    "@next/next/no-script-in-head": `error`,
     "@next/next/no-duplicate-head": `error`
   },
   overrides: [
