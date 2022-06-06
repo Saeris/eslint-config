@@ -1,5 +1,12 @@
 
 
+## [2.2.0](https://github.com/saeris/eslint-config/compare/v2.1.0...v2.2.0) (2022-06-06)
+
+
+### Features
+
+* Upgrade Dependencies, Remove old Nextjs Rules ([57c5bc4](https://github.com/saeris/eslint-config/commit/57c5bc4a61390e273eed16d2fde084844bb3f5f1))
+
 ## [2.1.0](https://github.com/saeris/eslint-config/compare/v2.0.2...v2.1.0) (2022-03-20)
 
 
