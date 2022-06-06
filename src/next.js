@@ -20,8 +20,6 @@ module.exports = {
     "@next/next/google-font-display": `error`,
     /** https://nextjs.org/docs/messages/google-font-preconnect */
     "@next/next/google-font-preconnect": `error`,
-    /** https://nextjs.org/docs/messages/link-passhref */
-    "@next/next/link-passhref": `error`,
     /** https://nextjs.org/docs/messages/no-css-tags */
     "@next/next/no-css-tags": `error`,
     /** https://nextjs.org/docs/messages/no-document-import-in-page */
@@ -45,7 +43,6 @@ module.exports = {
     "@next/next/no-typos": `warn`,
     /** https://nextjs.org/docs/messages/next-script-for-ga */
     "@next/next/next-script-for-ga": `error`,
-    "@next/next/no-script-in-document": `error`,
     "@next/next/no-duplicate-head": `error`
   },
   overrides: [
