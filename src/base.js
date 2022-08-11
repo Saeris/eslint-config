@@ -532,7 +532,14 @@ module.exports = {
     /** https://eslint.org/docs/rules/constructor-super */
     "constructor-super": `off`,
     /** https://eslint.org/docs/rules/generator-star-spacing */
-    "generator-star-spacing": [`error`, { before: true, after: false }],
+    "generator-star-spacing": [
+      `error`,
+      {
+        before: false,
+        after: true,
+        method: { before: true, after: false }
+      }
+    ],
     /** https://eslint.org/docs/rules/no-class-assign */
     "no-class-assign": `error`,
     /** https://eslint.org/docs/rules/no-confusing-arrow */
