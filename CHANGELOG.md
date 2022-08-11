@@ -1,5 +1,12 @@
 
 
+## [2.3.0](https://github.com/saeris/eslint-config/compare/v2.2.0...v2.3.0) (2022-08-11)
+
+
+### Features
+
+* Upgrade Dependencies, Update `generator-star-spacing` rule ([43dfc58](https://github.com/saeris/eslint-config/commit/43dfc580222db30e6b94eade75efe89934ef77d2))
+
 ## [2.2.0](https://github.com/saeris/eslint-config/compare/v2.1.0...v2.2.0) (2022-06-06)
 
 
