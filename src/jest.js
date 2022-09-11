@@ -57,8 +57,6 @@ module.exports = {
     "jest/no-interpolation-in-snapshots": `error`,
     /** https://github.com/jest-community/eslint-plugin-jest/blob/master/docs/rules/no-jasmine-globals.md */
     "jest/no-jasmine-globals": `error`,
-    /** https://github.com/jest-community/eslint-plugin-jest/blob/master/docs/rules/no-jest-import.md */
-    "jest/no-jest-import": `error`,
     /** https://github.com/jest-community/eslint-plugin-jest/blob/master/docs/rules/no-large-snapshots.md */
     "jest/no-large-snapshots": [`warn`, { maxSize: 32 }],
     /** https://github.com/jest-community/eslint-plugin-jest/blob/master/docs/rules/no-mocks-import.md */
