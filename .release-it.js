@@ -1,4 +1,7 @@
 module.exports = {
+  src: {
+    commitArgs: "-S"
+  },
   git: {
     commitMessage: "chore: Publish v${version}"
   },
