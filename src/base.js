@@ -373,6 +373,16 @@ const importPlugin = /** @type {const} */ ({
     `error`,
     {
       "newlines-between": `never`,
+      pathGroups: [
+        {
+          pattern: "#*",
+          group: "internal"
+        },
+        {
+          pattern: "#*/**",
+          group: "internal"
+        }
+      ],
       groups: [`builtin`, [`internal`, `external`], [`parent`, `sibling`], `index`]
     }
   ],
