@@ -74,14 +74,17 @@ const typescriptRules = /** @type {const} */ ({
   "@typescript-eslint/triple-slash-reference": [`error`, { types: `prefer-import` }],
   "@typescript-eslint/type-annotation-spacing": `warn`,
   "@typescript-eslint/typedef": `off`,
-  "@typescript-eslint/unified-signatures": `off`,
-})
+  "@typescript-eslint/unified-signatures": `off`
+});
 
 const extensionRules = /** @type {const} */ ({
-  "@typescript-eslint/class-methods-use-this": ["warn", {
-    ignoreOverrideMethods: true,
-    ignoreClassesThatImplementAnInterface: true
-  }],
+  "@typescript-eslint/class-methods-use-this": [
+    "warn",
+    {
+      ignoreOverrideMethods: true,
+      ignoreClassesThatImplementAnInterface: true
+    }
+  ],
   "@typescript-eslint/default-param-last": `error`,
   "@typescript-eslint/indent": `off`, // Incompatible with Prettier
   "@typescript-eslint/init-declarations": `off`,
@@ -100,7 +103,7 @@ const extensionRules = /** @type {const} */ ({
   "@typescript-eslint/no-unused-vars": [`error`, { vars: `local`, args: `none`, ignoreRestSiblings: true }],
   "@typescript-eslint/no-use-before-define": [`error`, { functions: true, classes: true }],
   "@typescript-eslint/no-useless-constructor": `error`
-})
+});
 
 const formattingRules = /** @type {const} */ ({
   "@typescript-eslint/block-spacing": "off",
@@ -136,15 +139,13 @@ const formattingRules = /** @type {const} */ ({
   "space-infix-ops": `off`,
   "@typescript-eslint/space-infix-ops": [`error`, { int32Hint: false }],
   "@typescript-eslint/type-annotation-spacing": "off"
-})
+});
 
 /**
  * @type {import("eslint").Linter.Config}
  */
 module.exports = {
-  plugins: [
-    `@typescript-eslint/eslint-plugin`
-  ],
+  plugins: [`@typescript-eslint/eslint-plugin`],
   /**
    * Docs: https://typescript-eslint.io/rules/
    * Last Reviewed: v^6.4.1

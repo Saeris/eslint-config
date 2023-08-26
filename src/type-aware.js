@@ -62,9 +62,8 @@ const typescriptRules = /** @type {const} */ ({
   "@typescript-eslint/restrict-template-expressions": `warn`,
   "@typescript-eslint/strict-boolean-expressions": `off`,
   "@typescript-eslint/switch-exhaustiveness-check": `warn`,
-  "@typescript-eslint/unbound-method": [`warn`, { ignoreStatic: true }],
-
-})
+  "@typescript-eslint/unbound-method": [`warn`, { ignoreStatic: true }]
+});
 
 const extensionRules = /** @type {const} */ ({
   "@typescript-eslint/dot-notation": [`error`, { allowKeywords: true }],
@@ -72,7 +71,7 @@ const extensionRules = /** @type {const} */ ({
   "@typescript-eslint/no-throw-literal": `error`,
   "@typescript-eslint/require-await": `error`,
   "@typescript-eslint/return-await": `error`
-})
+});
 
 /**
  * @type {import("eslint").Linter.Config}
@@ -93,7 +92,7 @@ module.exports = {
       files: [`*.ts`, `*.tsx`],
       rules: {
         ...typescriptRules,
-        ...extensionRules,
+        ...extensionRules
       }
     }
   ]

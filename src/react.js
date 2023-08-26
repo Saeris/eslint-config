@@ -4,7 +4,7 @@
  * Docs: https://github.com/jsx-eslint/eslint-plugin-react#list-of-supported-rules
  * Last Reviewed: v^7.33.2
  */
-const reactPlugin = /** @type {const} */  ({
+const reactPlugin = /** @type {const} */ ({
   "react/boolean-prop-naming": [`error`, { validateNested: true }],
   "react/button-has-type": `warn`,
   "react/default-props-match-prop-types": `error`,
@@ -93,7 +93,7 @@ const reactPlugin = /** @type {const} */  ({
   "react/no-unescaped-entities": `off`,
   "react/no-unknown-property": `warn`,
   "react/no-unsafe": `error`,
-  "react/no-unstable-nested-components": ["error", { "allowAsProps": true }],
+  "react/no-unstable-nested-components": ["error", { allowAsProps: true }],
   "react/no-unused-class-component-methods": "warn",
   "react/no-unused-prop-types": `warn`,
   "react/no-unused-state": `warn`,
@@ -115,19 +115,19 @@ const reactPlugin = /** @type {const} */  ({
   "react/static-property-placement": `off`,
   "react/style-prop-object": `error`,
   "react/void-dom-elements-no-children": `error`
-})
+});
 
 /**
  * Docs: https://github.com/facebook/react/tree/master/packages/eslint-plugin-react-hooks
  * Last Reviewed: v^5.0.0
  */
 const hooksPlugin = /** @type {const} */ ({
-      "react-hooks/rules-of-hooks": `error`,
-      "react-hooks/exhaustive-deps": `warn`,
-})
+  "react-hooks/rules-of-hooks": `error`,
+  "react-hooks/exhaustive-deps": `warn`
+});
 
 /**
- * Docs: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y  
+ * Docs: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y
  * Last Reviewed: v^6.6.0
  */
 const jsxA11yPlugin = /** @type {const} */ ({
@@ -166,7 +166,7 @@ const jsxA11yPlugin = /** @type {const} */ ({
   "jsx-a11y/role-supports-aria-props": `error`,
   "jsx-a11y/scope": `error`,
   "jsx-a11y/tabindex-no-positive": `error`
-})
+});
 
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
@@ -180,11 +180,7 @@ module.exports = {
   env: {
     browser: true // necessary for window and document globals
   },
-  plugins: [
-    `eslint-plugin-jsx-a11y`,
-    `eslint-plugin-react`,
-    `eslint-plugin-react-hooks`
-  ],
+  plugins: [`eslint-plugin-jsx-a11y`, `eslint-plugin-react`, `eslint-plugin-react-hooks`],
   settings: {
     react: {
       version: `detect`

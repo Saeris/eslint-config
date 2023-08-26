@@ -2,10 +2,13 @@
 
 /** https://eslint.org/docs/latest/rules/#possible-problems */
 const possibleProblems = /** @type {const} */ ({
-  "array-callback-return": ["warn", {
-    allowImplicit: true,
-    checkForEach: true
-  }],
+  "array-callback-return": [
+    "warn",
+    {
+      allowImplicit: true,
+      checkForEach: true
+    }
+  ],
   "constructor-super": "error",
   "for-direction": `error`,
   "getter-return": `error`,
@@ -25,7 +28,7 @@ const possibleProblems = /** @type {const} */ ({
   "no-dupe-else-if": `error`,
   "no-dupe-keys": `error`,
   "no-duplicate-case": `error`,
-  "no-duplicate-imports": ["error", { "includeExports": true }],
+  "no-duplicate-imports": ["error", { includeExports: true }],
   "no-empty-character-class": `error`,
   "no-empty-pattern": `error`,
   "no-ex-assign": `error`,
@@ -58,14 +61,17 @@ const possibleProblems = /** @type {const} */ ({
   "no-unsafe-optional-chaining": `error`,
   "no-unused-private-class-members": "warn",
   "no-unused-vars": "warn",
-  "no-use-before-define": ["error", {
-    "functions": false
-  }],
+  "no-use-before-define": [
+    "error",
+    {
+      functions: false
+    }
+  ],
   "no-useless-backreference": `error`,
   "require-atomic-updates": `error`,
   "use-isnan": `error`,
-  "valid-typeof": `error`,
-})
+  "valid-typeof": `error`
+});
 
 /** https://eslint.org/docs/latest/rules/#suggestions */
 const suggestions = /** @type {const} */ ({
@@ -214,8 +220,8 @@ const suggestions = /** @type {const} */ ({
   strict: [`error`, `never`],
   "symbol-description": `error`,
   "vars-on-top": `error`,
-  yoda: `error`,
-})
+  yoda: `error`
+});
 
 /** https://eslint.org/docs/latest/rules/#layout--formatting */
 const layoutAndFormatting = /** @type {const} */ ({
@@ -301,11 +307,11 @@ const layoutAndFormatting = /** @type {const} */ ({
   "unicode-bom": `off`,
   "wrap-iife": [`error`, `any`],
   "wrap-regex": `off`,
-  "yield-star-spacing": [`error`, { before: false, after: true }],
-})
+  "yield-star-spacing": [`error`, { before: false, after: true }]
+});
 
 /**
- * Docs: https://github.com/benmosher/eslint-plugin-import  
+ * Docs: https://github.com/benmosher/eslint-plugin-import
  * Last Reviewed: v2.25.2
  */
 const importPlugin = /** @type {const} */ ({
@@ -370,11 +376,11 @@ const importPlugin = /** @type {const} */ ({
       groups: [`builtin`, [`internal`, `external`], [`parent`, `sibling`], `index`]
     }
   ],
-  "import/prefer-default-export": `off`,
-})
+  "import/prefer-default-export": `off`
+});
 
 /**
- * Docs: https://github.com/xjamundx/eslint-plugin-promise  
+ * Docs: https://github.com/xjamundx/eslint-plugin-promise
  * Last Reviewed: v^6.1.1
  */
 const promisePlugin = /** @type {const} */ ({
@@ -392,8 +398,8 @@ const promisePlugin = /** @type {const} */ ({
   "promise/param-names": `error`,
   "promise/prefer-await-to-callbacks": `error`,
   "promise/prefer-await-to-then": `error`,
-  "promise/valid-params": `error`,
-})
+  "promise/valid-params": `error`
+});
 
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
