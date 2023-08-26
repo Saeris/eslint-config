@@ -1,5 +1,12 @@
 
 
+## [2.5.0](https://github.com/saeris/eslint-config/compare/v2.4.1...v2.5.0) (2023-08-26)
+
+
+### Features
+
+* Support package.json "imports" aliases in import order sorting ([3501790](https://github.com/saeris/eslint-config/commit/35017907ed187b704c5e6b636f30ca08e4b95eca))
+
 ## [2.4.1](https://github.com/saeris/eslint-config/compare/v2.4.0...v2.4.1) (2023-08-26)
 
 
