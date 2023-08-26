@@ -1,227 +1,172 @@
 // @ts-check
+const typescriptRules = /** @type {const} */ ({
+  "@typescript-eslint/adjacent-overload-signatures": `error`,
+  "@typescript-eslint/array-type": [`error`, { default: `array-simple` }],
+  "@typescript-eslint/ban-ts-comment": `off`,
+  "@typescript-eslint/ban-tslint-comment": `error`,
+  "@typescript-eslint/ban-types": `off`,
+  "@typescript-eslint/class-literal-property-style": `off`,
+  "@typescript-eslint/consistent-generic-constructors": "error",
+  "@typescript-eslint/consistent-indexed-object-style": `off`,
+  "@typescript-eslint/consistent-type-assertions": [`error`, { assertionStyle: `as` }],
+  "@typescript-eslint/consistent-type-definitions": [`error`, `interface`],
+  "@typescript-eslint/consistent-type-imports": `error`,
+  "@typescript-eslint/explicit-function-return-type": `warn`,
+  "@typescript-eslint/explicit-member-accessibility": `off`,
+  "@typescript-eslint/explicit-module-boundary-types": [`warn`],
+  "@typescript-eslint/member-delimiter-style": [
+    `off`,
+    {
+      multiline: {
+        delimiter: `semi`,
+        requireLast: true
+      },
+      singleline: {
+        delimiter: `semi`,
+        requireLast: false
+      }
+    }
+  ],
+  "@typescript-eslint/member-ordering": `off`,
+  "@typescript-eslint/method-signature-style": [`off`, `property`],
+  "@typescript-eslint/no-confusing-non-null-assertion": `error`,
+  "@typescript-eslint/no-duplicate-enum-values": "error",
+  "@typescript-eslint/no-dynamic-delete": `warn`,
+  "@typescript-eslint/no-empty-interface": [
+    `warn`,
+    {
+      allowSingleExtends: false
+    }
+  ],
+  "@typescript-eslint/no-explicit-any": [`warn`, { ignoreRestArgs: true }],
+  "@typescript-eslint/no-extra-non-null-assertion": `error`,
+  "@typescript-eslint/no-extraneous-class": `off`,
+  "@typescript-eslint/no-import-type-side-effects": "error",
+  "@typescript-eslint/no-inferrable-types": [
+    `warn`,
+    {
+      ignoreParameters: true,
+      ignoreProperties: true
+    }
+  ],
+  "@typescript-eslint/no-invalid-void-type": `warn`,
+  "@typescript-eslint/no-misused-new": `error`,
+  "@typescript-eslint/no-namespace": [`error`, { allowDeclarations: true, allowDefinitionFiles: true }],
+  "@typescript-eslint/no-non-null-asserted-nullish-coalescing": "error",
+  "@typescript-eslint/no-non-null-asserted-optional-chain": `error`,
+  "@typescript-eslint/no-non-null-assertion": `off`,
+  "@typescript-eslint/no-require-imports": `warn`,
+  "@typescript-eslint/no-this-alias": `error`,
+  "@typescript-eslint/no-type-alias": `off`,
+  "@typescript-eslint/no-unnecessary-type-constraint": `warn`,
+  "@typescript-eslint/no-unsafe-declaration-merging": "error",
+  "@typescript-eslint/no-useless-empty-export": "error",
+  "@typescript-eslint/no-var-requires": `off`,
+  "@typescript-eslint/parameter-properties": "off",
+  "@typescript-eslint/prefer-as-const": `warn`,
+  "@typescript-eslint/prefer-enum-initializers": `error`,
+  "@typescript-eslint/prefer-for-of": `warn`,
+  "@typescript-eslint/prefer-function-type": `off`,
+  "@typescript-eslint/prefer-literal-enum-member": `error`,
+  "@typescript-eslint/prefer-namespace-keyword": `off`,
+  "@typescript-eslint/prefer-ts-expect-error": `warn`,
+  "@typescript-eslint/sort-type-constituents": "warn",
+  "@typescript-eslint/triple-slash-reference": [`error`, { types: `prefer-import` }],
+  "@typescript-eslint/type-annotation-spacing": `warn`,
+  "@typescript-eslint/typedef": `off`,
+  "@typescript-eslint/unified-signatures": `off`
+});
+
+const extensionRules = /** @type {const} */ ({
+  "@typescript-eslint/class-methods-use-this": [
+    "warn",
+    {
+      ignoreOverrideMethods: true,
+      ignoreClassesThatImplementAnInterface: true
+    }
+  ],
+  "@typescript-eslint/default-param-last": `error`,
+  "@typescript-eslint/indent": `off`, // Incompatible with Prettier
+  "@typescript-eslint/init-declarations": `off`,
+  "@typescript-eslint/no-array-constructor": `off`,
+  "@typescript-eslint/no-dupe-class-members": `error`,
+  "@typescript-eslint/no-empty-function": [`error`, { allow: [`arrowFunctions`, `constructors`] }],
+  "@typescript-eslint/no-extra-semi": `off`,
+  "@typescript-eslint/no-invalid-this": `off`,
+  "@typescript-eslint/no-loop-func": `error`,
+  "@typescript-eslint/no-loss-of-precision": `error`,
+  "@typescript-eslint/no-magic-numbers": `off`,
+  "@typescript-eslint/no-redeclare": `error`,
+  "@typescript-eslint/no-restricted-imports": "off",
+  "@typescript-eslint/no-shadow": `error`,
+  "@typescript-eslint/no-unused-expressions": `off`,
+  "@typescript-eslint/no-unused-vars": [`error`, { vars: `local`, args: `none`, ignoreRestSiblings: true }],
+  "@typescript-eslint/no-use-before-define": [`error`, { functions: true, classes: true }],
+  "@typescript-eslint/no-useless-constructor": `error`
+});
+
+const formattingRules = /** @type {const} */ ({
+  "@typescript-eslint/block-spacing": "off",
+  "@typescript-eslint/brace-style": "off",
+  "comma-dangle": `off`,
+  "@typescript-eslint/comma-dangle": [`error`, `never`],
+  "comma-spacing": `off`,
+  "@typescript-eslint/comma-spacing": [`error`, { before: false, after: true }],
+  "func-call-spacing": `off`,
+  "@typescript-eslint/func-call-spacing": `error`,
+  indent: `off`,
+  "@typescript-eslint/indent": `off`,
+  "@typescript-eslint/key-spacing": "off",
+  "@typescript-eslint/keyword-spacing": "off",
+  "@typescript-eslint/lines-around-comment": "off",
+  "lines-between-class-members": `off`,
+  "@typescript-eslint/lines-between-class-members": [`error`, `always`, { exceptAfterSingleLine: true }],
+  "@typescript-eslint/member-delimiter-style": "off",
+  "no-extra-parens": `off`,
+  "@typescript-eslint/no-extra-parens": [`error`, `functions`],
+  "@typescript-eslint/object-curly-spacing": "off",
+  "@typescript-eslint/padding-line-between-statements": "off",
+  quotes: `off`,
+  "@typescript-eslint/quotes": [`error`, `backtick`, { avoidEscape: true }],
+  semi: `off`,
+  "@typescript-eslint/semi": `off`, // Conflicts with Prettier
+  "@typescript-eslint/space-before-blocks": "off",
+  "space-before-function-paren": `off`,
+  "@typescript-eslint/space-before-function-paren": [
+    `error`,
+    { anonymous: `never`, named: `never`, asyncArrow: `always` }
+  ],
+  "space-infix-ops": `off`,
+  "@typescript-eslint/space-infix-ops": [`error`, { int32Hint: false }],
+  "@typescript-eslint/type-annotation-spacing": "off"
+});
 
 /**
  * @type {import("eslint").Linter.Config}
  */
 module.exports = {
-  plugins: [
-    `@typescript-eslint/eslint-plugin` // https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin
-  ],
-  rules: {
-    /**
-     * --- Typescript https://github.com/typescript-eslint/typescript-eslint ---
-     *
-     * Last Reviewed: v^4.10.0
-     *
-     * -- Supported Rules https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin#supported-rules ---
-     */
-
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/adjacent-overload-signatures.md */
-    "@typescript-eslint/adjacent-overload-signatures": `error`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/array-type.md */
-    "@typescript-eslint/array-type": [`error`, { defaultOption: `array-simple` }],
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/ban-ts-comment.md */
-    "@typescript-eslint/ban-ts-comment": `off`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/ban-tslint-comment.md */
-    "@typescript-eslint/ban-tslint-comment": `error`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/ban-types.md */
-    "@typescript-eslint/ban-types": `off`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/class-literal-property-style.md */
-    "@typescript-eslint/class-literal-property-style": `off`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/consistent-indexed-object-style.md */
-    "@typescript-eslint/consistent-indexed-object-style": `off`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/consistent-type-assertions.md */
-    "@typescript-eslint/consistent-type-assertions": [`error`, { assertionStyle: `as` }],
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/consistent-type-definitions.md */
-    "@typescript-eslint/consistent-type-definitions": [`error`, `interface`],
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/consistent-type-imports.md */
-    "@typescript-eslint/consistent-type-imports": `error`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-function-return-type.md */
-    "@typescript-eslint/explicit-function-return-type": `warn`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-member-accessibility.md */
-    "@typescript-eslint/explicit-member-accessibility": `off`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-module-boundary-types.md */
-    "@typescript-eslint/explicit-module-boundary-types": [`warn`],
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/member-delimiter-style.md */
-    "@typescript-eslint/member-delimiter-style": [
-      `off`,
-      {
-        multiline: {
-          delimiter: `semi`,
-          requireLast: true
-        },
-        singleline: {
-          delimiter: `semi`,
-          requireLast: false
-        }
-      }
-    ],
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/member-ordering.md */
-    "@typescript-eslint/member-ordering": `off`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/method-signature-style.md */
-    "@typescript-eslint/method-signature-style": [`off`, `property`],
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-confusing-non-null-assertion.md */
-    "@typescript-eslint/no-confusing-non-null-assertion": `error`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-dynamic-delete.md */
-    "@typescript-eslint/no-dynamic-delete": `warn`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-empty-interface.md */
-    "@typescript-eslint/no-empty-interface": [
-      `warn`,
-      {
-        allowSingleExtends: false
-      }
-    ],
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-explicit-any.md */
-    "@typescript-eslint/no-explicit-any": [`warn`, { ignoreRestArgs: true }],
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-extra-non-null-assertion.md */
-    "@typescript-eslint/no-extra-non-null-assertion": `error`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-extraneous-class.md */
-    "@typescript-eslint/no-extraneous-class": `off`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-implicit-any-catch.md */
-    "@typescript-eslint/no-implicit-any-catch": `warn`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-inferrable-types.md */
-    "@typescript-eslint/no-inferrable-types": [
-      `warn`,
-      {
-        ignoreParameters: true,
-        ignoreProperties: true
-      }
-    ],
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-invalid-void-type.md */
-    "@typescript-eslint/no-invalid-void-type": `warn`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-misused-new.md */
-    "@typescript-eslint/no-misused-new": `error`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-namespace.md */
-    "@typescript-eslint/no-namespace": [`error`, { allowDeclarations: true, allowDefinitionFiles: true }],
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-non-null-asserted-optional-chain.md */
-    "@typescript-eslint/no-non-null-asserted-optional-chain": `error`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-non-null-assertion.md */
-    "@typescript-eslint/no-non-null-assertion": `off`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-parameter-properties.md */
-    "@typescript-eslint/no-parameter-properties": `off`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-require-imports.md */
-    "@typescript-eslint/no-require-imports": `warn`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-this-alias.md */
-    "@typescript-eslint/no-this-alias": `error`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-type-alias.md */
-    "@typescript-eslint/no-type-alias": `off`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-type-constraint.md */
-    "@typescript-eslint/no-unnecessary-type-constraint": `warn`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-var-requires.md */
-    "@typescript-eslint/no-var-requires": `off`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-as-const.md */
-    "@typescript-eslint/prefer-as-const": `warn`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-enum-initializers.md */
-    "@typescript-eslint/prefer-enum-initializers": `error`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-for-of.md */
-    "@typescript-eslint/prefer-for-of": `warn`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-function-type.md */
-    "@typescript-eslint/prefer-function-type": `off`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-literal-enum-member.md */
-    "@typescript-eslint/prefer-literal-enum-member": `error`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-namespace-keyword.md */
-    "@typescript-eslint/prefer-namespace-keyword": `off`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-optional-chain.md */
-    "@typescript-eslint/prefer-optional-chain": `error`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-ts-expect-error.md */
-    "@typescript-eslint/prefer-ts-expect-error": `warn`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/triple-slash-reference.md */
-    "@typescript-eslint/triple-slash-reference": [`error`, { types: `prefer-import` }],
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/type-annotation-spacing.md */
-    "@typescript-eslint/type-annotation-spacing": `warn`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/typedef.md */
-    "@typescript-eslint/typedef": `off`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/unified-signatures.md */
-    "@typescript-eslint/unified-signatures": `off`,
-
-    /**
-     * -- Extension Rules https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin#supported-rules ---
-     */
-
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/brace-style.md */
-    //"@typescript-eslint/brace-style": [`error`, `1tbs`, { allowSingleLine: true }],
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/comma-dangle.md */
-    "@typescript-eslint/comma-dangle": [`error`, `never`],
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/comma-spacing.md */
-    "@typescript-eslint/comma-spacing": [`error`, { before: false, after: true }],
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/default-param-last.md */
-    "@typescript-eslint/default-param-last": `error`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/func-call-spacing.md */
-    "@typescript-eslint/func-call-spacing": `error`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/indent.md */
-    "@typescript-eslint/indent": `off`, // Incompatible with Prettier
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/init-declarations.md */
-    "@typescript-eslint/init-declarations": `off`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/keyword-spacing.md */
-    "@typescript-eslint/keyword-spacing": [`error`, { before: true, after: true }],
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/lines-between-class-members.md */
-    "@typescript-eslint/lines-between-class-members": [`error`, `always`, { exceptAfterSingleLine: true }],
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-array-constructor.md */
-    "@typescript-eslint/no-array-constructor": `off`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-dupe-class-members.md */
-    "@typescript-eslint/no-dupe-class-members": `error`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-duplicate-imports.md */
-    "@typescript-eslint/no-duplicate-imports": `error`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-empty-function.md */
-    "@typescript-eslint/no-empty-function": [`error`, { allow: [`arrowFunctions`, `constructors`] }],
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-extra-parens.md */
-    "@typescript-eslint/no-extra-parens": [`error`, `functions`],
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-extra-semi.md */
-    "@typescript-eslint/no-extra-semi": `off`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-invalid-this.md */
-    "@typescript-eslint/no-invalid-this": `off`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-loop-func.md */
-    "@typescript-eslint/no-loop-func": `error`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-loss-of-precision.md */
-    "@typescript-eslint/no-loss-of-precision": `error`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-magic-numbers.md */
-    "@typescript-eslint/no-magic-numbers": `off`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-redeclare.md */
-    "@typescript-eslint/no-redeclare": `error`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-shadow.md */
-    "@typescript-eslint/no-shadow": `error`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-expressions.md */
-    "@typescript-eslint/no-unused-expressions": `off`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-vars.md */
-    "@typescript-eslint/no-unused-vars": [`error`, { vars: `local`, args: `none`, ignoreRestSiblings: true }],
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md */
-    "@typescript-eslint/no-use-before-define": [`error`, { functions: true, classes: true }],
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-useless-constructor.md */
-    "@typescript-eslint/no-useless-constructor": `error`,
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/quotes.md */
-    "@typescript-eslint/quotes": [`error`, `backtick`, { avoidEscape: true }],
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/semi.md */
-    "@typescript-eslint/semi": `off`, // Conflicts with Prettier
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/space-before-function-paren.md */
-    "@typescript-eslint/space-before-function-paren": [
-      `error`,
-      { anonymous: `never`, named: `never`, asyncArrow: `always` }
-    ],
-    /** https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/space-infix-ops.md */
-    "@typescript-eslint/space-infix-ops": [`error`, { int32Hint: false }]
-  },
+  plugins: [`@typescript-eslint/eslint-plugin`],
+  /**
+   * Docs: https://typescript-eslint.io/rules/
+   * Last Reviewed: v^6.4.1
+   */
   overrides: [
     {
       // enable the rule specifically for TypeScript files
       files: [`*.ts`, `*.tsx`],
       rules: {
+        ...typescriptRules,
+        ...extensionRules,
+        ...formattingRules,
         // Each of these rules have an equivalent in @typescript-eslint,
         // so they must be turned off for compatibility
-        "brace-style": `off`,
-        "comma-dangle": `off`,
-        "comma-spacing": `off`,
         "default-param-last": `off`,
         "dot-notation": `off`,
-        "func-call-spacing": `off`,
-        indent: `off`,
         "init-declarations": `off`,
-        "keyword-spacing": `off`,
-        "lines-between-class-members": `off`,
         "no-array-constructor": `off`,
         "no-dupe-class-members": `off`,
         "no-duplicate-imports": `off`,
         "no-empty-function": `off`,
-        "no-extra-parens": `off`,
         "no-extra-semi": `off`,
         "no-implied-eval": `off`,
         "no-invalid-this": `off`,
@@ -235,11 +180,7 @@ module.exports = {
         "no-unused-vars": `off`,
         "no-use-before-define": `off`,
         "no-useless-constructor": `off`,
-        quotes: `off`,
-        "require-await": `off`,
-        semi: `off`,
-        "space-before-function-paren": `off`,
-        "space-infix-ops": `off`
+        "require-await": `off`
       }
     },
     {
