@@ -1,5 +1,19 @@
 
 
+## [2.4.0](https://github.com/saeris/eslint-config/compare/v2.3.1...v2.4.0) (2023-08-26)
+
+
+### Features
+
+* Review All Rulesets, Update Dependencies ([00bfed7](https://github.com/saeris/eslint-config/commit/00bfed7760b35235b63fc5a586f2a7e7feabbfc9))
+
+
+### Bug Fixes
+
+* Remove unused hooks ([bfd0684](https://github.com/saeris/eslint-config/commit/bfd068468705849c48d781034f189094444225ee))
+* Rollback dependency `release-it` ([fc870a8](https://github.com/saeris/eslint-config/commit/fc870a8d4c8bf538594861787c17c7ee5a7d5d24))
+* Update GitHub Actions, Update min Node version ([afe6591](https://github.com/saeris/eslint-config/commit/afe659183e13a32c3a7ecef88af6bd75a06dad30))
+
 ### [2.3.1](https://github.com/saeris/eslint-config/compare/v2.3.0...v2.3.1) (2022-09-11)
 
 ## [2.3.0](https://github.com/saeris/eslint-config/compare/v2.2.0...v2.3.0) (2022-08-11)
