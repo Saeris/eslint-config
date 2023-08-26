@@ -17,6 +17,9 @@ module.exports = {
     `!**/node_modules/**`
   ],
   extensionsToTreatAsEsm: [".ts"],
+  transform: {
+    "^.+\\.(js|jsx|ts|tsx)$": ["esbuild-jest"],
+  },
   testEnvironment: `node`,
   verbose: true
 };
