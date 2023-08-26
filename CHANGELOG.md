@@ -1,5 +1,12 @@
 
 
+## [2.4.1](https://github.com/saeris/eslint-config/compare/v2.4.0...v2.4.1) (2023-08-26)
+
+
+### Bug Fixes
+
+* Support package.json `imports` aliases, Disable type import style ([abd1b55](https://github.com/saeris/eslint-config/commit/abd1b55201c6a78bccf2b646b0044af8284f69e8))
+
 ## [2.4.0](https://github.com/saeris/eslint-config/compare/v2.3.1...v2.4.0) (2023-08-26)
 
 
