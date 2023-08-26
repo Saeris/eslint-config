@@ -344,7 +344,7 @@ const importPlugin = /** @type {const} */ ({
   "import/no-relative-parent-imports": "off",
   "import/no-restricted-paths": `off`,
   "import/no-self-import": `error`,
-  "import/no-unresolved": [`error`, { commonjs: true }],
+  "import/no-unresolved": [`error`, { commonjs: true, ignore: ["^#.+$"] }],
   "import/no-useless-path-segments": [
     `error`,
     {
@@ -354,7 +354,7 @@ const importPlugin = /** @type {const} */ ({
   "import/no-webpack-loader-syntax": `error`,
 
   /** Style guide */
-  "import/consistent-type-specifier-style": ["error", "prefer-inline"],
+  "import/consistent-type-specifier-style": "off",
   "import/dynamic-import-chunkname": `off`,
   "import/exports-last": `off`,
   "import/extensions": `off`,
