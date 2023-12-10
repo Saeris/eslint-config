@@ -47,7 +47,7 @@ const reactPlugin = /** @type {const} */ ({
   "react/jsx-max-depth": `off`,
   "react/jsx-max-props-per-line": `off`,
   "react/jsx-newline": `off`, // Autofixed by Prettier
-  "react/jsx-no-bind": `warn`,
+  "react/jsx-no-bind": [`warn`, { ignoreDOMComponents: true, allowArrowFunctions: true }],
   "react/jsx-no-comment-textnodes": `off`, // This rule prevents disabling linting rules with comments
   "react/jsx-no-constructed-context-values": "off",
   "react/jsx-no-duplicate-props": `error`,
@@ -104,7 +104,7 @@ const reactPlugin = /** @type {const} */ ({
   "react/prefer-stateless-function": `error`,
   "react/prop-types": `off`,
   "react/react-in-jsx-scope": `off`,
-  "react/require-default-props": `warn`,
+  "react/require-default-props": [`warn`, { forbidDefaultForRequired: true, functions: `defaultArguments` }],
   "react/require-optimization": `off`,
   "react/require-render-return": `error`,
   "react/self-closing-comp": `error`,
