@@ -1,5 +1,12 @@
 
 
+## [2.6.0](https://github.com/saeris/eslint-config/compare/v2.5.0...v2.6.0) (2023-12-10)
+
+
+### Features
+
+* Update annoying React rules, Remove Fiddly, Upgrade dependencies ([0c6a44f](https://github.com/saeris/eslint-config/commit/0c6a44f7e08179a6d11286e8500a939f4b485e59))
+
 ## [2.5.0](https://github.com/saeris/eslint-config/compare/v2.4.1...v2.5.0) (2023-08-26)
 
 
