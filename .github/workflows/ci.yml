@@ -10,11 +10,11 @@ jobs:
   test:
     name: Lint, Test, and Typecheck
     timeout-minutes: 15
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     strategy:
       matrix:
-        node-version: [18, 20]
+        node-version: [20, 22, 24]
 
     steps:
       - name: Check out code
@@ -31,11 +31,5 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
-      - name: Lint
-        run: yarn lint
-
-      - name: Test
-        run: yarn test
-
-      - name: Typecheck
-        run: yarn typecheck
+      - name: Lint, Test, Typecheck
+        run: yarn ci

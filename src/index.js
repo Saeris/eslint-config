@@ -1,15 +1,14 @@
 // @ts-check
+import baseConfigs from "./base.js";
+import nextConfigs from "./next.js";
+import stylisticConfigs from "./stylistic.js";
+import typeAwareConfigs from "./type-aware.js";
+import vitestConfigs from "./vitest.js";
 
-/**
- * @type {import("eslint").Linter.Config}
- */
-module.exports = {
-  extends: [
-    require.resolve(`./base`),
-    require.resolve(`./jest`),
-    require.resolve(`./next`),
-    require.resolve(`./react`),
-    require.resolve(`./type-aware`),
-    require.resolve(`./typescript`)
-  ]
-};
+export default [
+  ...baseConfigs,
+  ...nextConfigs,
+  ...stylisticConfigs,
+  ...typeAwareConfigs,
+  ...vitestConfigs
+];
