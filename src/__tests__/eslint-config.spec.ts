@@ -1,29 +1,24 @@
 import path from "path";
 import { ESLint } from "eslint";
-import { default as config } from "..";
+import { defineConfig } from "eslint/config";
+import config from "..";
 
 describe(`eslint-config`, () => {
   it(`load config in ESLint to validate all rules are correct`, async () => {
     const overrideConfigFile = path.join(__dirname, `../index.js`); //?
-    const project = path.join(__dirname, `../../tsconfig.json`); //?
     const cli = new ESLint({
-      overrideConfig: {
-        ...config,
-        parserOptions: {
-          project
-        },
-        settings: {
-          react: {
-            version: `latest`
-          }
+      // @ts-expect-error
+      overrideConfig: defineConfig(config, {
+        rules: {
+          "import-x/no-anonymous-default-export": `off`,
+          "import-x/no-default-export": `off`
         }
-      },
-      ignore: false,
-      useEslintrc: false
+      }),
+      ignore: false
     });
 
     const results = await cli.lintFiles(overrideConfigFile);
-    const messages = results[0].messages; //?
+    const [{ messages }] = results; //?
 
     expect(messages).toStrictEqual([]);
   });

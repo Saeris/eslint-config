@@ -1,80 +1,90 @@
 // @ts-check
+import { cwd } from "node:process";
+import { parser } from "typescript-eslint";
+import { importX, createNodeResolver } from "eslint-plugin-import-x";
+import { createTypeScriptImportResolver } from "eslint-import-resolver-typescript";
+import pluginPromise from "eslint-plugin-promise";
 
-/** https://eslint.org/docs/latest/rules/#possible-problems */
-const possibleProblems = /** @type {const} */ ({
+/**
+ * https://eslint.org/docs/latest/rules/#possible-problems
+ *
+ * @satisfies {Partial<import("eslint/rules").ESLintRules>}
+ */
+const possibleProblems = {
   "array-callback-return": [
-    "warn",
+    `warn`,
     {
       allowImplicit: true,
       checkForEach: true
     }
   ],
-  "constructor-super": "error",
+  "constructor-super": `error`,
   "for-direction": `error`,
   "getter-return": `error`,
   "no-async-promise-executor": `error`,
   "no-await-in-loop": `error`,
-  "no-class-assign": "error",
+  "no-class-assign": `error`,
   "no-compare-neg-zero": `error`,
   "no-cond-assign": [`error`, `always`],
-  "no-const-assign": "error",
-  "no-constant-binary-expression": "error",
+  "no-const-assign": `error`,
+  "no-constant-binary-expression": `error`,
   "no-constant-condition": `warn`,
-  "no-constructor-return": "error",
+  "no-constructor-return": `error`,
   "no-control-regex": `error`,
   "no-debugger": `warn`,
   "no-dupe-args": `error`,
-  "no-dupe-class-members": "error", // Enforced by TypeScript
+  "no-dupe-class-members": `error`, // Enforced by TypeScript
   "no-dupe-else-if": `error`,
   "no-dupe-keys": `error`,
   "no-duplicate-case": `error`,
-  "no-duplicate-imports": ["error", { includeExports: true }],
+  "no-duplicate-imports": [`error`, { includeExports: true }],
   "no-empty-character-class": `error`,
   "no-empty-pattern": `error`,
   "no-ex-assign": `error`,
-  "no-fallthrough": "error",
+  "no-fallthrough": `error`,
   "no-func-assign": `error`,
   "no-import-assign": `error`,
   "no-inner-declarations": `error`,
   "no-invalid-regexp": `error`,
   "no-irregular-whitespace": `error`,
-  "no-loss-of-precision": `error`, // Overriden by @typescript-eslint
+  "no-loss-of-precision": `error`,
   "no-misleading-character-class": `error`,
-  "no-new-native-nonconstructor": "warn",
-  "no-new-symbol": "error",
+  "no-new-native-nonconstructor": `warn`,
+  // "no-new-symbol": "error",
   "no-obj-calls": `error`,
   "no-promise-executor-return": `error`,
   "no-prototype-builtins": `error`,
-  "no-self-assign": "error",
-  "no-self-compare": "error",
+  "no-self-assign": `error`,
+  "no-self-compare": `error`,
   "no-setter-return": `error`,
   "no-sparse-arrays": `error`,
   "no-template-curly-in-string": `error`,
-  "no-this-before-super": "error",
-  "no-undef": "error",
+  "no-this-before-super": `error`,
+  "no-unassigned-vars": `error`,
+  "no-undef": `error`,
   "no-unexpected-multiline": `off`,
-  "no-unmodified-loop-condition": "warn",
+  "no-unmodified-loop-condition": `warn`,
   "no-unreachable": `error`,
   "no-unreachable-loop": `error`,
   "no-unsafe-finally": `error`,
   "no-unsafe-negation": `error`,
   "no-unsafe-optional-chaining": `error`,
-  "no-unused-private-class-members": "warn",
-  "no-unused-vars": "warn",
-  "no-use-before-define": [
-    "error",
-    {
-      functions: false
-    }
-  ],
+  "no-unused-private-class-members": `warn`,
+  "no-unused-vars": `warn`,
+  "no-use-before-define": [`error`, { functions: false }],
+  "no-useless-assignment": `error`,
   "no-useless-backreference": `error`,
   "require-atomic-updates": `error`,
   "use-isnan": `error`,
   "valid-typeof": `error`
-});
+};
 
-/** https://eslint.org/docs/latest/rules/#suggestions */
-const suggestions = /** @type {const} */ ({
+/**
+ * https://eslint.org/docs/latest/rules/#suggestions
+ *
+ * @satisfies {Partial<import("eslint/rules").ESLintRules>}
+ */
+const suggestions = {
   "accessor-pairs": `error`,
   "arrow-body-style": [`error`, `as-needed`],
   "block-scoped-var": `error`,
@@ -99,7 +109,7 @@ const suggestions = /** @type {const} */ ({
   "id-length": `off`,
   "id-match": `off`,
   "init-declarations": `off`, // Overriden by @typescript-eslint
-  "logical-assignment-operators": ["error", "always", { enforceForIfStatements: true }],
+  "logical-assignment-operators": [`error`, `always`, { enforceForIfStatements: true }],
   "max-classes-per-file": `off`,
   "max-depth": `off`,
   "max-lines": `off`,
@@ -107,7 +117,7 @@ const suggestions = /** @type {const} */ ({
   "max-nested-callbacks": `off`,
   "max-params": `off`,
   "max-statements": `off`,
-  "multiline-comment-style": `off`,
+  // "multiline-comment-style": `off`,
   "new-cap": [`error`, { newIsCap: true }],
   "no-alert": `error`,
   "no-array-constructor": `off`, // Overriden by @typescript-eslint
@@ -115,22 +125,22 @@ const suggestions = /** @type {const} */ ({
   "no-caller": `error`,
   "no-case-declarations": `error`,
   "no-confusing-arrow": `off`,
-  "no-console": "warn",
+  "no-console": `warn`,
   "no-continue": `error`,
   "no-delete-var": `error`,
   "no-div-regex": `error`,
   "no-else-return": `error`,
   "no-empty": `error`,
   "no-empty-function": [`error`, { allow: [`arrowFunctions`, `constructors`] }], // Overriden by @typescript-eslint
-  "no-empty-static-block": "error",
+  "no-empty-static-block": `error`,
   "no-eq-null": `error`,
   "no-eval": `error`,
   "no-extend-native": `error`,
   "no-extra-bind": `error`,
-  "no-extra-boolean-cast": "error",
+  "no-extra-boolean-cast": `error`,
   "no-extra-label": `error`,
-  "no-extra-semi": "error",
-  "no-floating-decimal": `error`,
+  // "no-extra-semi": "error",
+  // "no-floating-decimal": `error`,
   "no-global-assign": `error`,
   "no-implicit-coercion": `off`,
   "no-implicit-globals": `off`,
@@ -144,23 +154,24 @@ const suggestions = /** @type {const} */ ({
   "no-lonely-if": `error`,
   "no-loop-func": `error`, // Overriden by @typescript-eslint
   "no-magic-numbers": `off`, // Overriden by @typescript-eslint
-  "no-mixed-operators": `off`,
+  // "no-mixed-operators": `off`,
   "no-multi-assign": `error`,
   "no-multi-str": `error`,
   "no-negated-condition": `error`,
   "no-nested-ternary": `off`,
   "no-new": `error`,
   "no-new-func": `error`,
-  "no-new-object": `error`,
+  // "no-new-object": `error`,
   "no-new-wrappers": `error`,
   "no-nonoctal-decimal-escape": `error`,
+  "no-object-constructor": `error`,
   "no-octal": `error`,
   "no-octal-escape": `error`,
   "no-param-reassign": `error`,
   "no-plusplus": `off`,
   "no-proto": `error`,
   "no-redeclare": `error`, // Overriden by @typescript-eslint
-  "no-regex-spaces": "error",
+  "no-regex-spaces": `error`,
   "no-restricted-exports": `off`,
   "no-restricted-globals": `off`,
   "no-restricted-imports": `off`,
@@ -193,7 +204,7 @@ const suggestions = /** @type {const} */ ({
   "no-with": `error`,
   "object-shorthand": [`error`, `properties`],
   "one-var": [`error`, `never`],
-  "one-var-declaration-per-line": [`error`, `always`],
+  // "one-var-declaration-per-line": [`error`, `always`],
   "operator-assignment": [`error`, `always`],
   "prefer-arrow-callback": `error`,
   "prefer-const": `off`,
@@ -201,14 +212,14 @@ const suggestions = /** @type {const} */ ({
   "prefer-exponentiation-operator": `error`,
   "prefer-named-capture-group": `warn`,
   "prefer-numeric-literals": `error`,
-  "prefer-object-has-own": "error",
+  "prefer-object-has-own": `error`,
   "prefer-object-spread": `error`,
   "prefer-promise-reject-errors": `error`,
   "prefer-regex-literals": `error`,
   "prefer-rest-params": `error`,
   "prefer-spread": `error`,
   "prefer-template": `error`,
-  "quote-props": [`error`, `as-needed`],
+  // "quote-props": [`error`, `as-needed`],
   radix: `error`,
   "require-await": `error`, // Overriden by @typescript-eslint
   "require-unicode-regexp": `off`,
@@ -216,255 +227,184 @@ const suggestions = /** @type {const} */ ({
   "sort-imports": `off`,
   "sort-keys": `off`,
   "sort-vars": `off`,
-  "spaced-comment": [`off`, `always`, { plugins: [`react`], exceptions: [`*`], markers: [`*`] }],
+  // "spaced-comment": [`off`, `always`],
   strict: [`error`, `never`],
   "symbol-description": `error`,
   "vars-on-top": `error`,
   yoda: `error`
-});
-
-/** https://eslint.org/docs/latest/rules/#layout--formatting */
-const layoutAndFormatting = /** @type {const} */ ({
-  "array-bracket-newline": [`error`, `consistent`], // Conflicts with Prettier
-  "array-bracket-spacing": `error`,
-  "array-element-newline": `off`,
-  "arrow-parens": [`error`, `always`],
-  "arrow-spacing": [`error`, { before: true, after: true }],
-  "block-spacing": [`error`, `always`],
-  "brace-style": [`error`, `1tbs`, { allowSingleLine: true }], // Overriden by @typescript-eslint
-  "comma-dangle": [`error`, `never`], // Overriden by @typescript-eslint
-  "comma-spacing": [`error`, { before: false, after: true }], // Overriden by @typescript-eslint
-  "comma-style": [`error`, `last`],
-  "computed-property-spacing": `error`,
-  "dot-location": [`error`, `property`],
-  "eol-last": `error`,
-  "func-call-spacing": `error`, // Overriden by @typescript-eslint
-  "function-call-argument-newline": [`error`, `consistent`],
-  "function-paren-newline": [`off`, `consistent`],
-  "generator-star-spacing": [
-    `error`,
-    {
-      before: false,
-      after: true,
-      method: { before: true, after: false }
-    }
-  ],
-  "implicit-arrow-linebreak": `off`,
-  indent: `off`, // Incompatible with Prettier
-  "jsx-quotes": [`error`, `prefer-double`],
-  "key-spacing": `off`,
-  "keyword-spacing": [`error`, { before: true, after: true }], // Overriden by @typescript-eslint
-  "line-comment-position": `off`,
-  "linebreak-style": `off`,
-  "lines-around-comment": `off`,
-  "lines-between-class-members": [`error`, `always`, { exceptAfterSingleLine: true }], // Overriden by @typescript-eslint
-  "max-len": `off`,
-  "max-statements-per-line": `off`,
-  "multiline-ternary": "off", // Incompatible with Prettier
-  "new-parens": `error`,
-  "newline-per-chained-call": `off`,
-  "no-mixed-spaces-and-tabs": [`error`, `smart-tabs`],
-  "no-multi-spaces": [
-    `error`,
-    {
-      exceptions: {
-        Property: true,
-        VariableDeclarator: true,
-        ImportDeclaration: true
-      }
-    }
-  ],
-  "no-multiple-empty-lines": [`error`, { max: 2 }],
-  "no-tabs": `off`,
-  "no-trailing-spaces": `error`,
-  "no-whitespace-before-property": `error`,
-  "nonblock-statement-body-position": `off`,
-  "object-curly-newline": [
-    `error`,
-    {
-      ObjectExpression: { consistent: true },
-      ObjectPattern: { consistent: true }
-    }
-  ],
-  "object-curly-spacing": [`error`, `always`],
-  "object-property-newline": [`error`, { allowMultiplePropertiesPerLine: true }],
-  "operator-linebreak": `off`,
-  "padded-blocks": [`error`, `never`],
-  "padding-line-between-statements": `off`,
-  quotes: [`error`, `backtick`, { avoidEscape: true }], // Overriden by @typescript-eslint
-  "rest-spread-spacing": [`error`, `never`],
-  semi: `off`, // Conflicts with Prettier
-  "semi-spacing": [`error`, { before: false, after: true }],
-  "semi-style": [`error`, `last`],
-  "space-before-blocks": `error`,
-  "space-before-function-paren": [`error`, { anonymous: `never`, named: `never`, asyncArrow: `always` }], // Overriden by @typescript-eslint
-  "space-in-parens": [`error`, `never`],
-  "space-infix-ops": [`error`, { int32Hint: false }], // Overriden by @typescript-eslint
-  "space-unary-ops": [`error`, { words: true, nonwords: false }],
-  "switch-colon-spacing": [`error`, { before: false, after: true }],
-  "template-curly-spacing": [`error`, `never`],
-  "template-tag-spacing": [`error`, `never`],
-  "unicode-bom": `off`,
-  "wrap-iife": [`error`, `any`],
-  "wrap-regex": `off`,
-  "yield-star-spacing": [`error`, { before: false, after: true }]
-});
+};
 
 /**
- * Docs: https://github.com/benmosher/eslint-plugin-import
- * Last Reviewed: v2.25.2
+ * https://eslint.org/docs/latest/rules/#layout--formatting
+ *
+ * @satisfies {Partial<import("eslint/rules").ESLintRules>}
  */
-const importPlugin = /** @type {const} */ ({
-  /** Helpful warnings */
-  "import/export": `error`,
-  "import/no-deprecated": `error`,
-  "import/no-empty-named-blocks": "warn",
-  "import/no-extraneous-dependencies": `off`,
-  "import/no-mutable-exports": `error`,
-  "import/no-named-as-default": `warn`,
-  "import/no-named-as-default-member": `warn`,
-  "import/no-unused-modules": `error`,
+const layoutAndFormatting = { "unicode-bom": `off` };
 
-  /** Module systems */
-  "import/no-amd": `off`,
-  "import/no-commonjs": `off`,
-  "import/no-nodejs-modules": `off`,
-  "import/no-import-module-exports": "warn",
-  "import/unambiguous": `off`,
-
-  /** Static analysis */
-  "import/default": `error`,
-  "import/named": `error`,
-  "import/namespace": `error`,
-  "import/no-absolute-path": `error`,
-  "import/no-cycle": `warn`,
-  "import/no-dynamic-require": `error`,
-  "import/no-internal-modules": `off`,
-  "import/no-relative-packages": "warn",
-  "import/no-relative-parent-imports": "off",
-  "import/no-restricted-paths": `off`,
-  "import/no-self-import": `error`,
-  "import/no-unresolved": [`error`, { commonjs: true, ignore: ["^#.+$"] }],
-  "import/no-useless-path-segments": [
-    `error`,
-    {
-      noUselessIndex: true
+/**
+ * ESlint https://github.com/eslint/eslint
+ *
+ * Last Reviewed: v9.28.0
+ *
+ */
+const configBase = [
+  {
+    name: `parser`,
+    languageOptions: {
+      parser,
+      parserOptions: {
+        projectService: { allowDefaultProject: [`*.js`, `*.mjs`, `*.ts`] },
+        tsconfigRootDir: cwd()
+      }
     }
-  ],
-  "import/no-webpack-loader-syntax": `error`,
+  },
+  {
+    name: `base`,
+    files: [`**/*.?(m|c)js?(x)`],
+    /** Last reviewed: ESLint v^8.47.0 */
+    rules: {
+      ...possibleProblems,
+      ...suggestions,
+      ...layoutAndFormatting
+    }
+  },
+  {
+    name: `base-test-exceptions`,
+    files: [`**/*.{spec,test}.{j,t}s?(x)`],
+    rules: {
+      "no-console": `off`,
+      "no-undefined": `off`
+    }
+  }
+];
 
-  /** Style guide */
-  "import/consistent-type-specifier-style": "off",
-  "import/dynamic-import-chunkname": `off`,
-  "import/exports-last": `off`,
-  "import/extensions": `off`,
-  "import/first": [`error`, `absolute-first`],
-  "import/group-exports": `off`,
-  "import/max-dependencies": `off`,
-  "import/newline-after-import": `error`,
-  "import/no-anonymous-default-export": `warn`,
-  "import/no-default-export": `warn`,
-  "import/no-duplicates": `error`,
-  "import/no-named-default": `off`,
-  "import/no-named-export": `off`,
-  "import/no-namespace": `off`,
-  "import/no-unassigned-import": `off`,
-  "import/order": [
-    `error`,
-    {
-      "newlines-between": `never`,
-      pathGroups: [
+/**
+ * import-x https://github.com/un-ts/eslint-plugin-import-x
+ *
+ * Last Reviewed: v4.15.1
+ *
+ */
+const configImport = [
+  {
+    name: `import-x`,
+    plugins: { "import-x": importX },
+    settings: {
+      "import-x/extensions": [`.cjs`, `.mjs`, `.js`, `.jsx`, `.cts`, `.mts`, `.ts`, `.tsx`],
+      "import-x/resolver-next": [createTypeScriptImportResolver(), createNodeResolver()]
+    },
+    rules: {
+      // Helpful warnings
+      "import-x/export": `error`,
+      "import-x/no-deprecated": `error`,
+      "import-x/no-empty-named-blocks": `warn`,
+      "import-x/no-extraneous-dependencies": `off`,
+      "import-x/no-mutable-exports": `error`,
+      "import-x/no-named-as-default": `warn`,
+      "import-x/no-named-as-default-member": `warn`,
+      "import-x/no-unused-modules": `error`,
+
+      // Module systems
+      "import-x/no-amd": `off`,
+      "import-x/no-commonjs": `off`,
+      "import-x/no-nodejs-modules": `off`,
+      "import-x/no-import-module-exports": `warn`,
+      "import-x/unambiguous": `off`,
+
+      // Static analysis
+      "import-x/default": `error`,
+      "import-x/named": `error`,
+      "import-x/namespace": `error`,
+      "import-x/no-absolute-path": `error`,
+      "import-x/no-cycle": `warn`,
+      "import-x/no-dynamic-require": `error`,
+      "import-x/no-internal-modules": `off`,
+      "import-x/no-relative-packages": `warn`,
+      "import-x/no-relative-parent-imports": `off`,
+      "import-x/no-restricted-paths": `off`,
+      "import-x/no-self-import": `error`,
+      "import-x/no-unresolved": [
+        `error`,
         {
-          pattern: "#*",
-          group: "internal"
-        },
-        {
-          pattern: "#*/**",
-          group: "internal"
+          commonjs: true,
+          ignore: [`^#.+$`]
         }
       ],
-      groups: [`builtin`, [`internal`, `external`], [`parent`, `sibling`], `index`]
+      "import-x/no-useless-path-segments": [`error`, { noUselessIndex: true }],
+      "import-x/no-webpack-loader-syntax": `error`,
+
+      // Style guide
+      "import-x/consistent-type-specifier-style": `off`,
+      "import-x/dynamic-import-chunkname": `off`,
+      "import-x/exports-last": `off`,
+      "import-x/extensions": `off`,
+      "import-x/first": [`error`, `absolute-first`],
+      "import-x/group-exports": `off`,
+      "import-x/max-dependencies": `off`,
+      "import-x/newline-after-import": `error`,
+      "import-x/no-anonymous-default-export": `warn`,
+      "import-x/no-default-export": `warn`,
+      "import-x/no-duplicates": `error`,
+      "import-x/no-named-default": `off`,
+      "import-x/no-named-export": `off`,
+      "import-x/no-namespace": `off`,
+      "import-x/no-unassigned-import": `off`,
+      "import-x/order": [
+        `error`,
+        {
+          "newlines-between": `never`,
+          pathGroups: [
+            {
+              pattern: `#*`,
+              group: `internal`
+            },
+            {
+              pattern: `#*/**`,
+              group: `internal`
+            }
+          ],
+          groups: [`builtin`, [`internal`, `external`], [`parent`, `sibling`], `index`]
+        }
+      ],
+      "import-x/prefer-default-export": `off`
     }
-  ],
-  "import/prefer-default-export": `off`
-});
+  },
+  {
+    name: `import-x-storybook-exceptions`,
+    // Storybook uses Default Exports as a convention in story files
+    files: [`*.stories.{j,t}s?(x)`],
+    rules: {
+      "import-x/no-default-export": `off`,
+      "import-x/no-anonymous-default-export": `off`
+    }
+  }
+];
 
 /**
- * Docs: https://github.com/xjamundx/eslint-plugin-promise
- * Last Reviewed: v^6.1.1
+ * promise https://github.com/xjamundx/eslint-plugin-promise
+ *
+ * Last Reviewed: v7.2.1
+ *
  */
-const promisePlugin = /** @type {const} */ ({
-  "promise/always-return": `error`,
-  "promise/avoid-new": `off`,
-  "promise/catch-or-return": [`error`, { terminationMethod: [`catch`, `finally`] }],
-  "promise/no-callback-in-promise": `warn`,
-  "promise/no-multiple-resolved": "error",
-  "promise/no-native": `off`,
-  "promise/no-nesting": `warn`,
-  "promise/no-new-statics": `error`,
-  "promise/no-promise-in-callback": `warn`,
-  "promise/no-return-in-finally": `error`,
-  "promise/no-return-wrap": `error`,
-  "promise/param-names": `error`,
-  "promise/prefer-await-to-callbacks": `error`,
-  "promise/prefer-await-to-then": `error`,
-  "promise/valid-params": `error`
-});
-
-/** @type {import("eslint").Linter.Config} */
-module.exports = {
-  parser: `@typescript-eslint/parser`,
-  parserOptions: {
-    ecmaVersion: 2020,
-    ecmaFeatures: {
-      jsx: true,
-      modules: true
-    },
-    sourceType: `module`
-  },
-  env: {
-    es2020: true, // sets parserOptions.ecmaVersion to 2020, but also required for usage of certain features like Promise without errors
-    node: true // required to avoid getting errors for usage of `module.exports`
-  },
-  plugins: [
-    `eslint-plugin-import`, // https://github.com/benmosher/eslint-plugin-import
-    `eslint-plugin-promise` // https://github.com/xjamundx/eslint-plugin-promise
-  ],
-  settings: {
-    "import/resolver": {
-      node: {
-        extensions: [`.js`, `.jsx`, `.ts`, `.tsx`, `.json`]
-      }
-    },
-    "import/parsers": {
-      "@typescript-eslint/parser": [`.ts`, `.tsx`]
-    }
-  },
-  ignorePatterns: [`*.js`, `!./src/*.js`],
-  /** Last reviewed: ESLint v^8.47.0 */
+const configPromise = {
+  name: `promise`,
+  plugins: { promise: pluginPromise },
   rules: {
-    ...possibleProblems,
-    ...suggestions,
-    ...layoutAndFormatting,
-    /* --- Plugin Specific Rules ---*/
-    ...importPlugin,
-    ...promisePlugin
-  },
-  overrides: [
-    {
-      files: [`**/*.{spec,test}.{j,t}s?(x)`],
-      rules: {
-        "no-console": `off`,
-        "no-undefined": `off`
-      }
-    },
-    {
-      // Storybook uses Default Exports as a convention in story files
-      files: [`*.stories.{j,t}s?(x)`],
-      rules: {
-        "import/no-default-export": `off`,
-        "import/no-anonymous-default-export": `off`
-      }
-    }
-  ]
+    "promise/always-return": `error`,
+    "promise/avoid-new": `off`,
+    "promise/catch-or-return": [`error`, { terminationMethod: [`catch`, `finally`] }],
+    "promise/no-callback-in-promise": `warn`,
+    "promise/no-multiple-resolved": `error`,
+    "promise/no-native": `off`,
+    "promise/no-nesting": `warn`,
+    "promise/no-new-statics": `error`,
+    "promise/no-promise-in-callback": `warn`,
+    "promise/no-return-in-finally": `error`,
+    "promise/no-return-wrap": `error`,
+    "promise/param-names": `error`,
+    "promise/prefer-await-to-callbacks": `error`,
+    "promise/prefer-await-to-then": `error`,
+    "promise/valid-params": `error`
+  }
 };
+
+export default [...configBase, configImport, configPromise];
