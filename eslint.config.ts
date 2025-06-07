@@ -5,8 +5,10 @@ import stylistic from "./src/stylistic.js";
 import vitest from "./src/vitest.js";
 
 export default defineConfig([
+  // @ts-expect-error
   base,
   stylistic,
+  // @ts-expect-error
   typeAware,
   vitest,
   {
