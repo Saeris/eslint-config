@@ -1,4 +1,5 @@
 // @ts-check
+import type { Linter } from "eslint";
 import { plugin } from "typescript-eslint";
 
 const stylistic = {
@@ -20,7 +21,7 @@ const stylistic = {
   ],
   "@typescript-eslint/prefer-for-of": `warn`,
   "@typescript-eslint/prefer-function-type": `off`
-};
+} satisfies Linter.RulesRecord;
 
 const typescriptRules = {
   "@typescript-eslint/ban-ts-comment": `off`,
@@ -71,7 +72,7 @@ const typescriptRules = {
   "@typescript-eslint/triple-slash-reference": [`error`, { types: `prefer-import` }],
   // "@typescript-eslint/typedef": `off`,
   "@typescript-eslint/unified-signatures": `off`
-};
+} satisfies Linter.RulesRecord;
 
 const extensionRules = {
   "class-methods-use-this": `off`,
@@ -127,13 +128,11 @@ const extensionRules = {
   ],
   "no-useless-constructor": `off`,
   "@typescript-eslint/no-useless-constructor": `error`
-};
+} satisfies Linter.RulesRecord;
 
 /**
  * Each of these rules have an equivalent in @typescript-eslint,
  * so they must be turned off for compatibility
- *
- * @satisfies {import("eslint").Linter.Config}
  */
 const configBaseOverrides = {
   name: `typescript-base-exceptions`,
@@ -174,24 +173,24 @@ const configBaseOverrides = {
     "space-before-function-paren": `off`,
     "space-infix-ops": `off`
   }
-};
+} satisfies Linter.Config;
 
 /**
  * Typescript https://github.com/typescript-eslint/typescript-eslint
  *
  * Last Reviewed: v8.33.1
- *
  */
 const configTypescript = {
   name: `typescript`,
   files: [`**/*.?(m|c)ts?(x)`],
+  // @ts-expect-error
   plugins: { "@typescript-eslint": plugin },
   rules: {
     ...stylistic,
     ...typescriptRules,
     ...extensionRules
   }
-};
+} satisfies Linter.Config;
 
 /**
  * For tests we don't care about function return types
@@ -200,6 +199,6 @@ const configTestOverides = {
   name: `typescript-test-exceptions`,
   files: [`**/*.{spec,test}.{j,t}s?(x)`],
   rules: { "@typescript-eslint/explicit-function-return-type": `off` }
-};
+} satisfies Linter.Config;
 
 export default [configTypescript, configBaseOverrides, configTestOverides];

@@ -3,13 +3,12 @@ import globals from "globals";
 import pluginJSXa11y from "eslint-plugin-jsx-a11y";
 import pluginReact from "eslint-plugin-react";
 import * as pluginReactHooks from "eslint-plugin-react-hooks";
+import type { Linter } from "eslint";
 
 /**
  * React https://github.com/yannickcr/eslint-plugin-react
  *
  * Last Reviewed: v^7.21.0
- *
- * @satisfies {import("eslint").Linter.Config}
  */
 const configReact = {
   name: `react`,
@@ -145,14 +144,12 @@ const configReact = {
     "react/style-prop-object": `error`,
     "react/void-dom-elements-no-children": `error`
   }
-};
+} satisfies Linter.Config;
 
 /**
  * Docs: https://github.com/facebook/react/tree/master/packages/eslint-plugin-react-hooks
  *
  * Last Reviewed: v^5.0.0
- *
- * @satisfies {import("eslint").Linter.Config}
  */
 const configReactHooks = {
   name: `react-hooks`,
@@ -161,14 +158,12 @@ const configReactHooks = {
     "react-hooks/rules-of-hooks": `error`,
     "react-hooks/exhaustive-deps": `warn`
   }
-};
+} satisfies Linter.Config;
 
 /**
  * Docs: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y
  *
  * Last Reviewed: v^6.6.0
- *
- * @satisfies {import("eslint").Linter.Config}
  */
 const configJSXa11ly = {
   name: `jsx-a11y`,
@@ -210,6 +205,6 @@ const configJSXa11ly = {
     "jsx-a11y/scope": `error`,
     "jsx-a11y/tabindex-no-positive": `error`
   }
-};
+} satisfies Linter.Config;
 
 export default [configReact, configReactHooks, configJSXa11ly];

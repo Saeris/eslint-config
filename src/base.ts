@@ -4,11 +4,11 @@ import { parser } from "typescript-eslint";
 import { importX, createNodeResolver } from "eslint-plugin-import-x";
 import { createTypeScriptImportResolver } from "eslint-import-resolver-typescript";
 import pluginPromise from "eslint-plugin-promise";
+import type { Linter } from "eslint";
+import type { ESLintRules } from "eslint/rules";
 
 /**
  * https://eslint.org/docs/latest/rules/#possible-problems
- *
- * @satisfies {Partial<import("eslint/rules").ESLintRules>}
  */
 const possibleProblems = {
   "array-callback-return": [
@@ -77,12 +77,10 @@ const possibleProblems = {
   "require-atomic-updates": `error`,
   "use-isnan": `error`,
   "valid-typeof": `error`
-};
+} satisfies Partial<ESLintRules>;
 
 /**
  * https://eslint.org/docs/latest/rules/#suggestions
- *
- * @satisfies {Partial<import("eslint/rules").ESLintRules>}
  */
 const suggestions = {
   "accessor-pairs": `error`,
@@ -232,14 +230,12 @@ const suggestions = {
   "symbol-description": `error`,
   "vars-on-top": `error`,
   yoda: `error`
-};
+} satisfies Partial<ESLintRules>;
 
 /**
  * https://eslint.org/docs/latest/rules/#layout--formatting
- *
- * @satisfies {Partial<import("eslint/rules").ESLintRules>}
  */
-const layoutAndFormatting = { "unicode-bom": `off` };
+const layoutAndFormatting = { "unicode-bom": `off` } satisfies Partial<ESLintRules>;
 
 /**
  * ESlint https://github.com/eslint/eslint
@@ -251,6 +247,7 @@ const configBase = [
   {
     name: `parser`,
     languageOptions: {
+      // @ts-expect-error
       parser,
       parserOptions: {
         projectService: { allowDefaultProject: [`*.js`, `*.mjs`, `*.ts`] },
@@ -276,7 +273,7 @@ const configBase = [
       "no-undefined": `off`
     }
   }
-];
+] satisfies Linter.Config[];
 
 /**
  * import-x https://github.com/un-ts/eslint-plugin-import-x
@@ -287,6 +284,7 @@ const configBase = [
 const configImport = [
   {
     name: `import-x`,
+    // @ts-expect-error
     plugins: { "import-x": importX },
     settings: {
       "import-x/extensions": [`.cjs`, `.mjs`, `.js`, `.jsx`, `.cts`, `.mts`, `.ts`, `.tsx`],
@@ -377,7 +375,7 @@ const configImport = [
       "import-x/no-anonymous-default-export": `off`
     }
   }
-];
+] satisfies Linter.Config[];
 
 /**
  * promise https://github.com/xjamundx/eslint-plugin-promise
@@ -405,6 +403,6 @@ const configPromise = {
     "promise/prefer-await-to-then": `error`,
     "promise/valid-params": `error`
   }
-};
+} satisfies Linter.Config;
 
 export default [...configBase, configImport, configPromise];

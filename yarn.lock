@@ -1084,9 +1084,9 @@ __metadata:
     eslint-plugin-promise: "npm:^7.2.1"
     eslint-plugin-react: "npm:^7.37.5"
     eslint-plugin-react-hooks: "npm:^5.2.0"
-    eslint-plugin-storybook: "npm:^9.0.5"
     eslint-plugin-vitest: "npm:^0.5.4"
     globals: "npm:^16.2.0"
+    jiti: "npm:^2.4.2"
     prettier: "npm:^3.5.3"
     tsdown: "npm:^0.12.7"
     typescript: "npm:^5.8.3"
@@ -1356,7 +1356,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:8.33.1, @typescript-eslint/utils@npm:^8.24.0, @typescript-eslint/utils@npm:^8.32.1, @typescript-eslint/utils@npm:^8.8.1":
+"@typescript-eslint/utils@npm:8.33.1, @typescript-eslint/utils@npm:^8.24.0, @typescript-eslint/utils@npm:^8.32.1":
   version: 8.33.1
   resolution: "@typescript-eslint/utils@npm:8.33.1"
   dependencies:
@@ -3125,18 +3125,6 @@ __metadata:
   peerDependencies:
     eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7
   checksum: 10/ee1bd4e0ec64f29109d5a625bb703d179c82e0159c86c3f1b52fc1209d2994625a137dae303c333fb308a2e38315e44066d5204998177e31974382f9fda25d5c
-  languageName: node
-  linkType: hard
-
-"eslint-plugin-storybook@npm:^9.0.5":
-  version: 9.0.5
-  resolution: "eslint-plugin-storybook@npm:9.0.5"
-  dependencies:
-    "@typescript-eslint/utils": "npm:^8.8.1"
-  peerDependencies:
-    eslint: ">=8"
-    storybook: ^9.0.5
-  checksum: 10/9f059cde0cfb0fa4c479ed52331d34668bb5588f2e3f7bfee7bc949f0f62aa9057bff1114e0257347900f49ef55cdfb2a28dc64077cc19072cab6a8a863d17b7
   languageName: node
   linkType: hard
 

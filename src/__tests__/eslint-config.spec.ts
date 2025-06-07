@@ -5,7 +5,7 @@ import config from "..";
 
 describe(`eslint-config`, () => {
   it(`load config in ESLint to validate all rules are correct`, async () => {
-    const overrideConfigFile = path.join(__dirname, `../index.js`); //?
+    const overrideConfigFile = path.join(__dirname, `../index.ts`); //?
     const cli = new ESLint({
       // @ts-expect-error
       overrideConfig: defineConfig(config, {

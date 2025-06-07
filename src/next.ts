@@ -1,13 +1,12 @@
 // @ts-check
 import pluginNext from "@next/eslint-plugin-next";
+import type { Linter } from "eslint";
 import react from "./react.js";
 
 /**
  * Next https://github.com/vercel/next.js/tree/canary/packages/eslint-plugin-next
  *
  * Last Reviewed: v^12.0.4
- *
- * @satisfies {import("eslint").Linter.Config[]}
  */
 const configNext = [
   ...react,
@@ -42,6 +41,6 @@ const configNext = [
       "import-x/no-anonymous-default-export": `off`
     }
   }
-];
+] satisfies Linter.Config[];
 
 export default [configNext];
