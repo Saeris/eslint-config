@@ -1,5 +1,11 @@
 ## 3.0.0
 
+## 3.0.1
+
+### Patch Changes
+
+- [#5](https://github.com/Saeris/eslint-config/pull/5) [`53781ee`](https://github.com/Saeris/eslint-config/commit/53781ee711b53eb1f8dcc2e2a27ff80ebde1331c) Thanks [@Saeris](https://github.com/Saeris)! - Resolve missing individual exports, Add missing typedefs, Temporarily remove Storybook support
+
 ### Major Changes
 
 - [#3](https://github.com/Saeris/eslint-config/pull/3) [`feefd26`](https://github.com/Saeris/eslint-config/commit/feefd26dca901c25cf08a4d5659496d8f5cb88fb) Thanks [@Saeris](https://github.com/Saeris)! - Update to latest ESLint, Use Flat Config, Review all plugins and rules
