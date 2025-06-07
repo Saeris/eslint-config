@@ -14,7 +14,12 @@ const configStylistic = {
   name: `stylistic`,
   plugins: { "@stylistic": stylistic },
   rules: {
-    "@stylistic/array-bracket-newline": [`warn`, { multiline: true }],
+    "@stylistic/array-bracket-newline": [
+      `warn`,
+      {
+        multiline: true
+      }
+    ],
     "@stylistic/array-bracket-spacing": `warn`,
     "@stylistic/array-element-newline": [
       `warn`,
@@ -48,7 +53,7 @@ const configStylistic = {
     "@stylistic/eol-last": `warn`,
     "@stylistic/function-call-argument-newline": [`warn`, `consistent`],
     "@stylistic/function-call-spacing": `warn`,
-    "@stylistic/function-paren-newline": [`off`, `consistent`],
+    "@stylistic/function-paren-newline": [`warn`, `multiline-arguments`],
     "@stylistic/generator-star-spacing": [
       `warn`,
       {
@@ -113,7 +118,13 @@ const configStylistic = {
     "@stylistic/line-comment-position": `off`,
     "@stylistic/linebreak-style": `off`,
     "@stylistic/lines-around-comment": `off`,
-    "@stylistic/lines-between-class-members": [`warn`, `always`, { exceptAfterSingleLine: true }],
+    "@stylistic/lines-between-class-members": [
+      `warn`,
+      `always`,
+      {
+        exceptAfterSingleLine: true
+      }
+    ],
     "@stylistic/max-len": [`warn`, { code: 120 }],
     "@stylistic/max-statements-per-line": `off`,
     "@stylistic/multiline-ternary": [`warn`, `always-multiline`],
@@ -143,12 +154,23 @@ const configStylistic = {
     "@stylistic/object-curly-newline": [
       `warn`,
       {
-        ObjectExpression: { multiline: true },
-        ObjectPattern: { multiline: true }
+        ObjectExpression: {
+          multiline: true,
+          consistent: true
+        },
+        ObjectPattern: {
+          multiline: true,
+          consistent: true
+        }
       }
     ],
     "@stylistic/object-curly-spacing": [`warn`, `always`],
-    "@stylistic/object-property-newline": [`warn`, { allowAllPropertiesOnSameLine: false }],
+    "@stylistic/object-property-newline": [
+      `warn`,
+      {
+        allowAllPropertiesOnSameLine: false
+      }
+    ],
     "@stylistic/one-var-declaration-per-line": [`warn`, `initializations`],
     "@stylistic/operator-linebreak": [`warn`, `before`],
     "@stylistic/padded-blocks": [`warn`, `never`],
