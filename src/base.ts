@@ -374,6 +374,14 @@ const configImport = [
       "import-x/no-default-export": `off`,
       "import-x/no-anonymous-default-export": `off`
     }
+  },
+  {
+    name: `import-x-config-exceptions`,
+    files: [`*.config.?(m|c){j,t}s`],
+    rules: {
+      "import-x/no-default-export": `off`,
+      "import-x/no-anonymous-default-export": `off`
+    }
   }
 ] satisfies Linter.Config[];
 
