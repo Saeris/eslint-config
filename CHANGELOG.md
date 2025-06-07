@@ -1,5 +1,11 @@
 ## 3.0.0
 
+## 3.0.2
+
+### Patch Changes
+
+- [#7](https://github.com/Saeris/eslint-config/pull/7) [`5745eb2`](https://github.com/Saeris/eslint-config/commit/5745eb24df61278b25123f72f641e29fd58687c0) Thanks [@Saeris](https://github.com/Saeris)! - Fix missing .d.ts files in published artifact, Add default export exception for config files
+
 ## 3.0.1
 
 ### Patch Changes

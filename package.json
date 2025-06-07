@@ -1,6 +1,6 @@
 {
   "name": "@saeris/eslint-config",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Personal collection of shareable ESLint Configs",
   "author": "Drake Costa <drake@saeris.io> (https://github.com/Saeris/)",
   "license": "MIT",
