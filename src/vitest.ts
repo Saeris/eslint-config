@@ -1,13 +1,12 @@
 import vitest from "@vitest/eslint-plugin";
+import type { Linter } from "eslint";
 
 /**
  * Vitest https://github.com/vitest-dev/eslint-plugin-vitest
  *
  * Last Reviewed: v1.2.1
- *
- * @satisfies {import("eslint").Linter.Config}
  */
-const vitestConfig = /** @type {const} */ {
+const vitestConfig = {
   name: `vitest`,
   files: [`**/*.{spec,test}.{j,t}s?(x)`],
   plugins: { vitest },
@@ -71,6 +70,6 @@ const vitestConfig = /** @type {const} */ {
     "vitest/valid-expect-in-promise": `error`,
     "vitest/valid-title": `error`
   }
-};
+} satisfies Linter.Config;
 
 export default [vitestConfig];

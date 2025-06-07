@@ -1,17 +1,19 @@
-import stylistic from "@stylistic/eslint-plugin";
+import stylistic, { type RuleOptions } from "@stylistic/eslint-plugin";
+import type { Linter } from "eslint";
+
+type StylisticRules = {
+  [T in keyof RuleOptions]?: Linter.RuleEntry<RuleOptions[T]>
+};
 
 /**
  * Stylistic https://github.com/eslint-stylistic/eslint-stylistic
  *
  * Last Reviewed: v4.4.1
- *
- * @satisfies {import("eslint").Linter.Config}
  */
-const configStylistic = /** @type {const} */{
+const configStylistic = {
   name: `stylistic`,
   plugins: { "@stylistic": stylistic },
-  /** @satisfies {import("@stylistic/eslint-plugin").RuleOptions} */
-  rules: /** @type {const} */ ({
+  rules: {
     "@stylistic/array-bracket-newline": [`warn`, { multiline: true }],
     "@stylistic/array-bracket-spacing": `warn`,
     "@stylistic/array-element-newline": [
@@ -203,7 +205,7 @@ const configStylistic = /** @type {const} */{
         after: true
       }
     ]
-  })
-};
+  } satisfies StylisticRules
+} satisfies Linter.Config;
 
 export default [configStylistic];

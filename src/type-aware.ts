@@ -1,4 +1,5 @@
 // @ts-check
+import type { Linter } from "eslint";
 import typescript from "./typescript.js";
 
 const stylistic = {
@@ -15,7 +16,7 @@ const stylistic = {
   "@typescript-eslint/prefer-optional-chain": `error`,
   "@typescript-eslint/prefer-regexp-exec": `error`,
   "@typescript-eslint/prefer-string-starts-ends-with": `warn`
-};
+} satisfies Linter.RulesRecord;
 
 const typescriptRules = {
   "@typescript-eslint/await-thenable": `error`,
@@ -72,12 +73,12 @@ const typescriptRules = {
   "@typescript-eslint/switch-exhaustiveness-check": `warn`,
   "@typescript-eslint/unbound-method": [`warn`, { ignoreStatic: true }],
   "@typescript-eslint/use-unknown-in-catch-callback-variable": `warn`
-};
+} satisfies Linter.RulesRecord;
 
 const stylisticExtension = {
   "dot-notation": `off`,
   "@typescript-eslint/dot-notation": `error`
-};
+} satisfies Linter.RulesRecord;
 
 const extensionRules = {
   "consistent-return": `off`,
@@ -92,7 +93,7 @@ const extensionRules = {
   "@typescript-eslint/prefer-promise-reject-errors": `error`,
   "require-await": `off`,
   "@typescript-eslint/require-await": `error`
-};
+} satisfies Linter.RulesRecord;
 
 const configTypeAware = {
   name: `type-aware`,
@@ -103,6 +104,6 @@ const configTypeAware = {
     ...stylisticExtension,
     ...extensionRules
   }
-};
+} satisfies Linter.Config;
 
 export default [...typescript, configTypeAware];
