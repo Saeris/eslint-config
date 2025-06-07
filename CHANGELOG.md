@@ -1,5 +1,11 @@
 ## 3.0.0
 
+## 3.0.3
+
+### Patch Changes
+
+- [`25d2e61`](https://github.com/Saeris/eslint-config/commit/25d2e6185a43aaa17541f5a367029195c3307da4) Thanks [@Saeris](https://github.com/Saeris)! - Tweak stylistic rules around array and object newlines
+
 ## 3.0.2
 
 ### Patch Changes
