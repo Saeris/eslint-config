@@ -1,5 +1,11 @@
 ## 3.0.0
 
+## 3.1.0
+
+### Minor Changes
+
+- [#10](https://github.com/Saeris/eslint-config/pull/10) [`61188f0`](https://github.com/Saeris/eslint-config/commit/61188f094539b898272399de1e85bec71934cdbe) Thanks [@Saeris](https://github.com/Saeris)! - Add Astro config, Refine problematic formatting rules
+
 ## 3.0.3
 
 ### Patch Changes
