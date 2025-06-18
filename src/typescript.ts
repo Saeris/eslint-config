@@ -88,7 +88,7 @@ const extensionRules = {
   "init-declarations": `off`,
   "@typescript-eslint/init-declarations": `off`,
   "max-params": `off`,
-  "@typescript-eslint/max-params": `error`,
+  "@typescript-eslint/max-params": `off`, // unnecessary
   "no-array-constructor": `off`,
   "@typescript-eslint/no-array-constructor": `off`,
   "no-dupe-class-members": `off`,

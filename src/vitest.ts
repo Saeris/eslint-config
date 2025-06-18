@@ -54,16 +54,16 @@ const vitestConfig = {
     "vitest/prefer-strict-boolean-matchers": `warn`,
     "vitest/prefer-strict-equal": `warn`,
     "vitest/prefer-to-be": `warn`,
-    "vitest/prefer-to-be-falsy": `warn`,
+    "vitest/prefer-to-be-falsy": `off`, // conflicts with to-be
     "vitest/prefer-to-be-object": `warn`,
-    "vitest/prefer-to-be-truthy": `warn`,
+    "vitest/prefer-to-be-truthy": `off`, // conflicts with to-be
     "vitest/prefer-to-contain": `warn`,
     "vitest/prefer-to-have-length": `warn`,
     "vitest/prefer-todo": `warn`,
     "vitest/prefer-vi-mocked": `warn`,
     "vitest/require-local-test-context-for-concurrent-snapshots": `warn`,
     "vitest/require-mock-type-parameters": `warn`,
-    "vitest/require-to-throw-message": `error`,
+    "vitest/require-to-throw-message": `off`, // unnecessary
     "vitest/require-top-level-describe": `error`,
     "vitest/valid-describe-callback": `error`,
     "vitest/valid-expect": `error`,

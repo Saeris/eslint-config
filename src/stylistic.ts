@@ -2,7 +2,7 @@ import stylistic, { type RuleOptions } from "@stylistic/eslint-plugin";
 import type { Linter } from "eslint";
 
 type StylisticRules = {
-  [T in keyof RuleOptions]?: Linter.RuleEntry<RuleOptions[T]>
+  [T in keyof RuleOptions]?: Linter.RuleEntry<RuleOptions[T]>;
 };
 
 /**
@@ -14,12 +14,7 @@ const configStylistic = {
   name: `stylistic`,
   plugins: { "@stylistic": stylistic },
   rules: {
-    "@stylistic/array-bracket-newline": [
-      `warn`,
-      {
-        multiline: true
-      }
-    ],
+    "@stylistic/array-bracket-newline": `off`, // results in unexpected wrapping behavior
     "@stylistic/array-bracket-spacing": `warn`,
     "@stylistic/array-element-newline": [
       `warn`,
@@ -53,7 +48,7 @@ const configStylistic = {
     "@stylistic/eol-last": `warn`,
     "@stylistic/function-call-argument-newline": [`warn`, `consistent`],
     "@stylistic/function-call-spacing": `warn`,
-    "@stylistic/function-paren-newline": [`warn`, `multiline-arguments`],
+    "@stylistic/function-paren-newline": `off`, // results in unexpected wrapping behavior
     "@stylistic/generator-star-spacing": [
       `warn`,
       {
@@ -66,8 +61,8 @@ const configStylistic = {
       }
     ],
     "@stylistic/implicit-arrow-linebreak": `off`,
-    "@stylistic/indent": [`warn`, 2],
-    "@stylistic/indent-binary-ops": [`warn`, 2],
+    "@stylistic/indent": `off`, // conflicts with prettier
+    "@stylistic/indent-binary-ops": `off`, // conflicts with prettier
     "@stylistic/jsx-child-element-spacing": `warn`,
     "@stylistic/jsx-closing-bracket-location": [`warn`, `tag-aligned`],
     "@stylistic/jsx-closing-tag-location": [`warn`, `tag-aligned`],
@@ -125,7 +120,7 @@ const configStylistic = {
         exceptAfterSingleLine: true
       }
     ],
-    "@stylistic/max-len": [`warn`, { code: 120 }],
+    "@stylistic/max-len": `off`, // results in unexpected wrapping behavior
     "@stylistic/max-statements-per-line": `off`,
     "@stylistic/multiline-ternary": [`warn`, `always-multiline`],
     "@stylistic/new-parens": `warn`,
@@ -134,7 +129,7 @@ const configStylistic = {
     "@stylistic/no-extra-parens": `off`,
     "@stylistic/no-extra-semi": `warn`,
     "@stylistic/no-floating-decimal": `warn`,
-    "@stylistic/no-mixed-operators": `warn`,
+    "@stylistic/no-mixed-operators": `off`, // conflicts with prettier
     "@stylistic/no-mixed-spaces-and-tabs": [`warn`, `smart-tabs`],
     "@stylistic/no-multi-spaces": [
       `warn`,
@@ -172,7 +167,7 @@ const configStylistic = {
       }
     ],
     "@stylistic/one-var-declaration-per-line": [`warn`, `initializations`],
-    "@stylistic/operator-linebreak": [`warn`, `before`],
+    "@stylistic/operator-linebreak": `off`, // conflicts with prettier
     "@stylistic/padded-blocks": [`warn`, `never`],
     "@stylistic/padding-line-between-statements": `off`,
     "@stylistic/quote-props": [`warn`, `as-needed`],

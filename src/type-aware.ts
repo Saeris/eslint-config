@@ -88,7 +88,7 @@ const extensionRules = {
   "no-throw-literal": `off`,
   "@typescript-eslint/only-throw-error": `error`,
   "prefer-destructuring": `off`,
-  "@typescript-eslint/prefer-destructuring": `error`,
+  "@typescript-eslint/prefer-destructuring": `off`, // unnecessary
   "prefer-promise-reject-errors": `off`,
   "@typescript-eslint/prefer-promise-reject-errors": `error`,
   "require-await": `off`,

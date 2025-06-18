@@ -327,7 +327,7 @@ const configImport = [
           ignore: [`^#.+$`]
         }
       ],
-      "import-x/no-useless-path-segments": [`error`, { noUselessIndex: true }],
+      "import-x/no-useless-path-segments": [`error`, { noUselessIndex: false }],
       "import-x/no-webpack-loader-syntax": `error`,
 
       // Style guide
