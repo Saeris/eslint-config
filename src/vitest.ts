@@ -15,7 +15,7 @@ const vitestConfig = {
     "vitest/consistent-test-it": `error`,
     "vitest/expect-expect": [
       `error`,
-      { assertFunctionNames: [`expect`] }
+      { assertFunctionNames: [`expect`, `expect*`] }
     ],
     "vitest/max-expects": `off`,
     "vitest/max-nested-describe": `off`,
