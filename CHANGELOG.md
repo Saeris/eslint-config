@@ -1,5 +1,11 @@
 ## 3.0.0
 
+## 3.1.1
+
+### Patch Changes
+
+- [#12](https://github.com/Saeris/eslint-config/pull/12) [`8c24965`](https://github.com/Saeris/eslint-config/commit/8c24965be4ee27de81407a62ca215ddf8df51fe8) Thanks [@Saeris](https://github.com/Saeris)! - Allow for custom vitest assert functions with the `expect` prefix
+
 ## 3.1.0
 
 ### Minor Changes
