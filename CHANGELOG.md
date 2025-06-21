@@ -1,5 +1,11 @@
 ## 3.0.0
 
+## 3.1.2
+
+### Patch Changes
+
+- [`ab6e528`](https://github.com/Saeris/eslint-config/commit/ab6e528bd9df6f65c04656fcbe2b6719bac9cf2f) Thanks [@Saeris](https://github.com/Saeris)! - Disable stylistic rules that conflict with prettier and unnescessary `prefers` rules for Vitest
+
 ## 3.1.1
 
 ### Patch Changes
