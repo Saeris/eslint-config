@@ -52,8 +52,8 @@ const vitestConfig = {
     "vitest/prefer-snapshot-hint": `warn`,
     "vitest/prefer-spy-on": `warn`,
     "vitest/prefer-strict-boolean-matchers": `warn`,
-    "vitest/prefer-strict-equal": `warn`,
-    "vitest/prefer-to-be": `warn`,
+    "vitest/prefer-strict-equal": `off`, // Situational, sometimes toEqual is needed for potentially missing object keys
+    "vitest/prefer-to-be": `off`,
     "vitest/prefer-to-be-falsy": `off`, // conflicts with to-be
     "vitest/prefer-to-be-object": `warn`,
     "vitest/prefer-to-be-truthy": `off`, // conflicts with to-be

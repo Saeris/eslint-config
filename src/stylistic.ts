@@ -211,7 +211,7 @@ const configStylistic = {
     "@stylistic/template-curly-spacing": [`warn`, `never`],
     "@stylistic/template-tag-spacing": [`warn`, `never`],
     "@stylistic/type-annotation-spacing": `warn`,
-    "@stylistic/type-generic-spacing": `warn`,
+    "@stylistic/type-generic-spacing": `off`, // conflicts with Prettier
     "@stylistic/type-named-tuple-spacing": `warn`,
     "@stylistic/wrap-iife": [`warn`, `any`],
     "@stylistic/wrap-regex": `off`,
