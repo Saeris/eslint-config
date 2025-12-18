@@ -1,5 +1,11 @@
 ## 3.0.0
 
+## 3.2.2
+
+### Patch Changes
+
+- [`68bfe7f`](https://github.com/Saeris/eslint-config/commit/68bfe7f7b1ae67ed8489db7237eb7b55f7308b3e) Thanks [@Saeris](https://github.com/Saeris)! - fix export extensions
+
 ## 3.2.1
 
 ### Patch Changes
