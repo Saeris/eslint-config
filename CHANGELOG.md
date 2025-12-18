@@ -1,5 +1,11 @@
 ## 3.0.0
 
+## 3.2.1
+
+### Patch Changes
+
+- [`16089a7`](https://github.com/Saeris/eslint-config/commit/16089a7178a3f7f169af2010c48862052073b0c1) Thanks [@Saeris](https://github.com/Saeris)! - fix type errors on build
+
 ## 3.2.0
 
 ### Minor Changes
