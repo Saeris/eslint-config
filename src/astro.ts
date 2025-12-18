@@ -1,26 +1,15 @@
-import type { ESLint, Linter } from "eslint";
+import { cwd } from "node:process";
+import type { Linter } from "eslint";
 import globals from "globals";
-import * as parser from "astro-eslint-parser";
-import plugin from "eslint-plugin-astro";
-
-const environments = {
-  astro: {
-    globals: {
-      // Astro object
-      Astro: false,
-      // JSX Fragment
-      Fragment: false
-    }
-  }
-};
+import astroParser from "astro-eslint-parser";
+import tsParser from "@typescript-eslint/parser";
+import pluginAstro from "eslint-plugin-astro";
 
 const configAstro = [
   {
     name: `astro/base/plugin`,
     plugins: {
-      get astro(): ESLint.Plugin {
-        return plugin;
-      }
+      astro: pluginAstro
     }
   },
   {
@@ -29,63 +18,23 @@ const configAstro = [
     languageOptions: {
       globals: {
         ...globals.node,
-        ...environments.astro.globals
+        // Astro object
+        Astro: false,
+        // JSX Fragment
+        Fragment: false
       },
-      parser,
-      // The script of Astro components uses ESM.
+      parser: astroParser,
       sourceType: `module`,
       parserOptions: {
-        parser: true,
-        extraFileExtensions: [`.astro`]
+        parser: tsParser,
+        projectService: { allowDefaultProject: [`*.js`, `*.mjs`, `*.ts`] },
+        tsconfigRootDir: cwd(),
+        extraFileExtensions: [`.astro`],
+        ecmaFeatures: {
+          jsx: true
+        }
       }
     },
-    rules: {
-      // eslint-plugin-astro rules
-      // Enable base rules
-    },
-    processor: `astro/client-side-ts`
-  },
-  {
-    // Define the configuration for `<script>` tag.
-    // Script in `<script>` is assigned a virtual file name with the `.js` extension.
-    name: `astro/base/javascript`,
-    files: [`**/*.astro/*.js`, `*.astro/*.js`],
-    languageOptions: {
-      globals: {
-        ...globals.browser
-      },
-      sourceType: `module`
-    },
-    rules: {
-      // If you are using "prettier/prettier" rule,
-      // you don't need to format inside <script> as it will be formatted as a `.astro` file.
-      "prettier/prettier": `off`
-    }
-  },
-  {
-    // Define the configuration for `<script>` tag when using `client-side-ts` processor.
-    // Script in `<script>` is assigned a virtual file name with the `.ts` extension.
-    name: `astro/base/typescript`,
-    files: [`**/*.astro/*.ts`, `*.astro/*.ts`],
-    languageOptions: {
-      globals: {
-        ...globals.browser
-      },
-      parser: true,
-      sourceType: `module`,
-      parserOptions: {
-        project: null
-      }
-    },
-    rules: {
-      // If you are using "prettier/prettier" rule,
-      // you don't need to format inside <script> as it will be formatted as a `.astro` file.
-      "prettier/prettier": `off`
-    }
-  },
-  {
-    name: `astro`,
-    files: [`*.astro`, `**/*.astro`],
     rules: {
       // Possible Errors
       "astro/missing-client-only-directive-value": `error`,
@@ -146,6 +95,44 @@ const configAstro = [
       "astro/jsx-a11y/tabindex-no-positive": `error`,
       // Extension Rules
       "astro/semi": `warn`
+    },
+    processor: `astro/client-side-ts`
+  },
+  {
+    // Define the configuration for `<script>` tag.
+    // Script in `<script>` is assigned a virtual file name with the `.js` extension.
+    name: `astro/base/javascript`,
+    files: [`**/*.astro/*.js`, `*.astro/*.js`],
+    languageOptions: {
+      globals: {
+        ...globals.browser
+      },
+      sourceType: `module`
+    },
+    rules: {
+      "prettier/prettier": `off`
+    }
+  },
+  {
+    // Define the configuration for `<script>` tag when using `client-side-ts` processor.
+    // Script in `<script>` is assigned a virtual file name with the `.ts` extension.
+    name: `astro/base/typescript`,
+    files: [`**/*.astro/*.ts`, `*.astro/*.ts`],
+    languageOptions: {
+      globals: {
+        ...globals.browser
+      },
+      parser: tsParser,
+      sourceType: `module`,
+      parserOptions: {
+        projectService: { allowDefaultProject: [`*.js`, `*.mjs`, `*.ts`] },
+        tsconfigRootDir: cwd()
+      }
+    },
+    rules: {
+      // If you are using "prettier/prettier" rule,
+      // you don't need to format inside <script> as it will be formatted as a `.astro` file.
+      "prettier/prettier": `off`
     }
   }
 ] as Linter.Config[];
