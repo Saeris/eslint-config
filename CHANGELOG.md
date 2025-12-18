@@ -1,5 +1,11 @@
 ## 3.0.0
 
+## 3.2.4
+
+### Patch Changes
+
+- [`9686694`](https://github.com/Saeris/eslint-config/commit/9686694388f89166e64f469922e3281d367ee1db) Thanks [@Saeris](https://github.com/Saeris)! - fix astro config
+
 ## 3.2.3
 
 ### Patch Changes
