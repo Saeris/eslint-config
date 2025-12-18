@@ -1,21 +1,7 @@
-import path from "node:path";
-import { createRequire } from "node:module";
 import type { ESLint, Linter } from "eslint";
 import globals from "globals";
 import * as parser from "astro-eslint-parser";
 import plugin from "eslint-plugin-astro";
-import type tsParser from "@typescript-eslint/parser";
-
-let hasTypescriptEslintParser = false;
-let tsESLintParser: typeof tsParser | null = null;
-
-try {
-  const cwd = process.cwd();
-  const relativeTo = path.join(cwd, `__placeholder__.js`);
-  if ((tsESLintParser = createRequire(relativeTo)(`@typescript-eslint/parser`))) hasTypescriptEslintParser = true;
-} catch {
-  // noop
-}
 
 const environments = {
   astro: {
@@ -49,7 +35,7 @@ const configAstro = [
       // The script of Astro components uses ESM.
       sourceType: `module`,
       parserOptions: {
-        parser: tsESLintParser ?? undefined,
+        parser: true,
         extraFileExtensions: [`.astro`]
       }
     },
@@ -57,7 +43,7 @@ const configAstro = [
       // eslint-plugin-astro rules
       // Enable base rules
     },
-    processor: hasTypescriptEslintParser ? `astro/client-side-ts` : `astro/astro`
+    processor: `astro/client-side-ts`
   },
   {
     // Define the configuration for `<script>` tag.
@@ -85,7 +71,7 @@ const configAstro = [
       globals: {
         ...globals.browser
       },
-      parser: tsESLintParser ?? undefined,
+      parser: true,
       sourceType: `module`,
       parserOptions: {
         project: null
