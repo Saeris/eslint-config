@@ -1,5 +1,11 @@
 ## 3.0.0
 
+## 3.2.3
+
+### Patch Changes
+
+- [`d2559fe`](https://github.com/Saeris/eslint-config/commit/d2559fe57210f73a9d0904153d2170aa1a8d75de) Thanks [@Saeris](https://github.com/Saeris)! - fix externals
+
 ## 3.2.2
 
 ### Patch Changes
