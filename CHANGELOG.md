@@ -1,5 +1,11 @@
 ## 3.0.0
 
+## 3.2.0
+
+### Minor Changes
+
+- [`3f343b6`](https://github.com/Saeris/eslint-config/commit/3f343b61d6b44601df6ea07d3a70115812becc6e) Thanks [@Saeris](https://github.com/Saeris)! - December 2025 Update
+
 ## 3.1.2
 
 ### Patch Changes
