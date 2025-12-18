@@ -13,10 +13,7 @@ const vitestConfig = {
   rules: {
     "vitest/consistent-test-filename": `off`,
     "vitest/consistent-test-it": `error`,
-    "vitest/expect-expect": [
-      `error`,
-      { assertFunctionNames: [`expect`, `expect*`] }
-    ],
+    "vitest/expect-expect": [`error`, { assertFunctionNames: [`expect`, `expect*`] }],
     "vitest/max-expects": `off`,
     "vitest/max-nested-describe": `off`,
     "vitest/no-alias-methods": `warn`,

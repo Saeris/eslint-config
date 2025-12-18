@@ -9,7 +9,6 @@ import react from "./react.js";
  * Last Reviewed: v^12.0.4
  */
 const configNext = [
-  ...react,
   {
     name: `next`,
     files: [`**/*.{j,t}s?(x)`],
@@ -43,4 +42,4 @@ const configNext = [
   }
 ] satisfies Linter.Config[];
 
-export default [configNext];
+export default [...react, configNext];

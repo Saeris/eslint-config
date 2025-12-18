@@ -2,7 +2,7 @@
 import globals from "globals";
 import pluginJSXa11y from "eslint-plugin-jsx-a11y";
 import pluginReact from "eslint-plugin-react";
-import * as pluginReactHooks from "eslint-plugin-react-hooks";
+import pluginReactHooks from "eslint-plugin-react-hooks";
 import type { Linter } from "eslint";
 
 /**
@@ -153,6 +153,7 @@ const configReact = {
  */
 const configReactHooks = {
   name: `react-hooks`,
+  // @ts-expect-error
   plugins: { "react-hooks": pluginReactHooks },
   rules: {
     "react-hooks/rules-of-hooks": `error`,

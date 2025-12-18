@@ -8,6 +8,7 @@ import { configs } from "eslint-plugin-astro";
  */
 const configAstro = {
   name: `astro`,
+  files: [`*.astro`, `**/*.astro`],
   rules: {
     // Possible Errors
     "astro/missing-client-only-directive-value": `error`,
@@ -71,4 +72,4 @@ const configAstro = {
   }
 } satisfies Linter.Config;
 
-export default [...configs.base, configAstro];
+export default [...configs[`flat/base`], configAstro];

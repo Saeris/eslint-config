@@ -1,6 +1,7 @@
 // @ts-check
 import type { Linter } from "eslint";
-import { plugin } from "typescript-eslint";
+import plugin from "@typescript-eslint/eslint-plugin";
+import parserConfig from "./parser";
 
 const stylistic = {
   "@typescript-eslint/adjacent-overload-signatures": `error`,
@@ -180,17 +181,20 @@ const configBaseOverrides = {
  *
  * Last Reviewed: v8.33.1
  */
-const configTypescript = {
-  name: `typescript`,
-  files: [`**/*.?(m|c)ts?(x)`],
-  // @ts-expect-error
-  plugins: { "@typescript-eslint": plugin },
-  rules: {
-    ...stylistic,
-    ...typescriptRules,
-    ...extensionRules
+const configTypescript = [
+  parserConfig,
+  {
+    name: `typescript`,
+    files: [`**/*.?(m|c)ts?(x)`],
+    // @ts-expect-error
+    plugins: { "@typescript-eslint": plugin },
+    rules: {
+      ...stylistic,
+      ...typescriptRules,
+      ...extensionRules
+    }
   }
-} satisfies Linter.Config;
+] satisfies Linter.Config[];
 
 /**
  * For tests we don't care about function return types

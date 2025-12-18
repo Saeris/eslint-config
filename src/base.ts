@@ -1,11 +1,10 @@
 // @ts-check
-import { cwd } from "node:process";
-import { parser } from "typescript-eslint";
 import { importX, createNodeResolver } from "eslint-plugin-import-x";
 import { createTypeScriptImportResolver } from "eslint-import-resolver-typescript";
 import pluginPromise from "eslint-plugin-promise";
 import type { Linter } from "eslint";
 import type { ESLintRules } from "eslint/rules";
+import parserConfig from "./parser";
 
 /**
  * https://eslint.org/docs/latest/rules/#possible-problems
@@ -244,17 +243,7 @@ const layoutAndFormatting = { "unicode-bom": `off` } satisfies Partial<ESLintRul
  *
  */
 const configBase = [
-  {
-    name: `parser`,
-    languageOptions: {
-      // @ts-expect-error
-      parser,
-      parserOptions: {
-        projectService: { allowDefaultProject: [`*.js`, `*.mjs`, `*.ts`] },
-        tsconfigRootDir: cwd()
-      }
-    }
-  },
+  parserConfig,
   {
     name: `base`,
     files: [`**/*.?(m|c)js?(x)`],
